@@ -20,7 +20,7 @@ In this paper, we revisit the compression- enabled storage system architecture o
 
 We propose CCZNS (CC: collaborative compression), an advanced ZNS interface that revives in- storage hardware compression through a novel host- SSD collaborative approach. Unlike existing compression- enabled storage system architectures, CCZNS offloads only compression execution to the SSD but responds the post- compression information to the host for index maintenance (see Figure 1). CCZNS performs cross-
 
-![](images/bc53c85172f7f820dfb7617778a950c0ca724695d0dc4df378f840300ce50b35.jpg)  
+![](bc53c85172f7f820dfb7617778a950c0ca724695d0dc4df378f840300ce50b35.jpg)  
 Fig. 1. Existing and our proposed compression-enabled storage system architectures.
 
 layer management through a set of CC- specific read/write commands (i.e., CW and DR), integrating compression offloading and information responding into traditional read/write commands through the NVMe metadata field. To maintain a uniform data view between host and SSD, we implement bidirectional NVMe metadata transfer in the NVMe driver of the Linux kernel, so that host software can extract the returned information from the SSD and update the indexes accordingly (see  $\S \mathrm{III - B}$ ). To harvest the space saved by compression maximally, CCZNS revamps both CC- specific commands and storage management as byte- addressable (see  $\S \mathrm{III - D}$ ). CCZNS is also carefully refined to collaborate with host software with rich and diverse characteristics, such as different compression granularity (see  $\S \mathrm{III - C}$ ) and compatibility requirements (see  $\S \mathrm{III - E}$ ).
@@ -73,7 +73,7 @@ High compression performance. Our ASIC- based compression engines that have been
 
 Performance scalability. The compression performance can scale up with the number of SSDs, as each SSD has its own compression engines for performance acceleration.
 
-![](images/4a3efee7b5c97c696e7cfc28b4dd0bffb2a38d3ac977503c16f1fe4d114d0093.jpg)  
+![](4a3efee7b5c97c696e7cfc28b4dd0bffb2a38d3ac977503c16f1fe4d114d0093.jpg)  
 Fig. 2. Two intrinsic challenges to the host-transparent methodology.
 
 Low CPU overhead. Host CPU utilization can be significantly reduced through compression offloading. Since the (de)compression bandwidth per CPU core is only hundreds of MBs using standard algorithms [6], [42], the use of in- storage hardware engines can free up dozens of CPU cores for other tasks.
@@ -102,7 +102,7 @@ Compared to the TB- scale SSD capacity, each zone is only tens of MBs to a few G
 
 Instead of enlarging the logical zone size as TCSSD does,
 
-![](images/c36089cb4281d4a6db05bc7a02c45e33010181f948292cedfcb7c7d2b0d7f2a6.jpg)  
+![](c36089cb4281d4a6db05bc7a02c45e33010181f948292cedfcb7c7d2b0d7f2a6.jpg)  
 Fig. 3. Overview of CCZNS.
 
 another strategy is to shrink physical flash space allocation of zones. Balloon- ZNS [93], for instance, groups several zones into a single superblock and assigns each zone to a subset of flash blocks in that superblock (see Figure 2b). Compared to the conventional ZNS which adopts one- to- one mapping between zones and superblocks, Balloon- ZNS restricts the flash parallelism (e.g., dies) each zone can use, resulting in limited per- zone bandwidth and lowering access performance. Experiments on RocksDB show that the average write throughput of Balloon- ZNS is only  $60.5\%$  of our proposed approach (see  $\S \mathrm{V} - \mathrm{C}$ ).
@@ -127,7 +127,7 @@ In the following, we introduce the detailed designs of CCZNS. We first introduce
 
 The design highlight of CW and DR is the integration of CC semantics, such as compression of loading and information responding, in traditional read/write commands without additional I/O operations. This is feasible by utilizing reserved bits (up to two) in NVMe command dwords, as well as the NVMe metadata field that is commonly used for hint transfer or data protection [31]. The size of the metadata field can be flexibly
 
-![](images/06229d411d08009e27a044663293a14232c3ff84b63c3515cb8a3c46eb315896.jpg)  
+![](06229d411d08009e27a044663293a14232c3ff84b63c3515cb8a3c46eb315896.jpg)  
 Fig. 4. Command formats of CC-specific read/write commands. The orange background indicates that CCZNS will overwrite this value. The left and right sides of  $-\geq$  are the user-specified and CCZNS-overwritten values, respectively.
 
 supported by the SSD firmware according to the host software requirements.
@@ -186,7 +186,7 @@ Zone Append support. Zone Append is a new write method of ZNS, which breaks the 
 
 The current (write- based) CW can be easily ported to the Append- based CW. Their only difference is that, for Append- based CW, CCZNS should also return the actual write address but in byte granularity (rather than the logical block). Currently, there is no existing ZNS- compatible host software that
 
-![](images/4b4dddc7f5a77fdcc7b0d24904dd595e83513e3797b343c0515d7082aee2847b.jpg)  
+![](4b4dddc7f5a77fdcc7b0d24904dd595e83513e3797b343c0515d7082aee2847b.jpg)  
 Fig. 5. Host-SSD collaborative architecture of RocksDB, ZenFS, and CCZNS SSD.
 
 supports Zone Append in the compressed I/O path. We leave the evaluation of Zone Append- based CW as future work.
@@ -217,7 +217,7 @@ Utilizing CC- specific read/write commands. ZenFS currently uses the pre- read/w
 
 Extending index entries for decompression. As introduced in §III- B, host software should maintain both post- and pre-
 
-![](images/307d6e264d34180ef485d9b2eb47237bb440c4dd13e082a2699c81dfd39683c2.jpg)  
+![](307d6e264d34180ef485d9b2eb47237bb440c4dd13e082a2699c81dfd39683c2.jpg)  
 Fig. 6. New index entry format in CCZNS-aware RocksDB.
 
 compression sizes. The former is used to locate chunks, and the latter is used to preserve enough space for data retrieval. Therefore, the index entry format is added with an additional field that stores the pre- compression size (i.e., R in Figure 6). This inevitably expands the index blocks, but the overall memory usage increment is acceptable (see  $\S \mathrm{V} - \mathrm{C}$ ).
@@ -248,7 +248,7 @@ TABLE III PERCENTILE DISTRIBUTION OF VALUE SIZES (IN BYTES) IN TWO REAL DATASETS
 
 <table><tr><td></td><td>Avg.</td><td>10p</td><td>25p</td><td>50p</td><td>75p</td><td>90p</td><td>99p</td></tr><tr><td>A</td><td>1173.7</td><td>345</td><td>465</td><td>779</td><td>1436</td><td>2499</td><td>5672</td></tr><tr><td>R</td><td>947.2</td><td>620</td><td>676</td><td>786</td><td>1005</td><td>1421</td><td>3208</td></tr></table>
 
-![](images/f05a80454da5b7f677ad946825d5d7ebebfb7df392da04a734f25d3b91bd6671.jpg)  
+![](f05a80454da5b7f677ad946825d5d7ebebfb7df392da04a734f25d3b91bd6671.jpg)  
 Fig. 7. Throughput in FIO micro-benchmarks with different I/O sizes. CR: compression ratio of the data.
 
 # B. Raw SSD Access Performance
@@ -261,7 +261,7 @@ In the sequential read workload, CC can also surpass NO and the theoretical SSD 
 
 In the random read workload, CC shows similar or slightly higher (less than  $5\%$  ) throughput compared to NO. We also evaluate the average and  $99.99\mathrm{p}$  latency in the random read workload. The results of CC and NO are comparable, except that when the I/O size is 128KB, CC can reduce the average latency by  $38.8\%$  and  $36.0\%$  and the  $99.99\mathrm{p}$  latency by  $55.9\%$  and  $60.2\%$  when CR is 2 and 4, respectively. The reason behind this is that CC can read fewer flash pages during each read, thus reducing flash die contention and improving the latency.
 
-![](images/e9dc2c2621b981f7be5669a1dffb973343be0ad800a880766c17323a56058df1.jpg)  
+![](e9dc2c2621b981f7be5669a1dffb973343be0ad800a880766c17323a56058df1.jpg)  
 Fig. 8. Write volume in YCSB Load using different datasets. The full names of schemes (i.e., x-axis labels) are shown in  $\S \mathrm{V - A}$
 
 Since both CW and DR require additional information transfer through the NVMe metadata field (i.e., 64B per 4KB data), we also analyze the DMA time for metadata transfer in both commands. Across different benchmark configurations, the DMA time for metadata transfer accounts for less than  $1\%$  of the total processing time in the SSD, indicating that the metadata transfer has a trivial impact on the I/O latency.
@@ -272,7 +272,7 @@ We further conduct a system- level evaluation on RocksDB (version 8.11.0) using 
 
 Write Volume. Figure 8 shows the write volume in YCSB Load using different datasets, and a lower write volume contributes to a lower cost. We can see that CC reduces the write volume by an average of  $44.5\%$ $25.2\%$  and  $12.6\%$  compared to NO, Snappy, and Balloon. Host- side compression using standard algorithms, namely QAT, ZSTD, and ZSTDPC, further reduce the write volume by  $6.5\%$ $8.8\%$  and  $8.6\%$  .Despite that CC has the same compression algorithm and level as ZSTD and ZSTDPC, CC necessities data padding at the end of multi- chunk CWs for compatibility with traditional writes in the same zone (see  $\S \mathrm{III - E}$  . Nonetheless, considering the
 
-![](images/4c4c61312ccd6c6e560137fb5b2e799eac7191562a53bd4944f88f810ebb0596.jpg)  
+![](4c4c61312ccd6c6e560137fb5b2e799eac7191562a53bd4944f88f810ebb0596.jpg)  
 Fig. 10. Average and tail I/O latency in YCSB Load and YCSB C. The dataset is Amazon, while others show similar trend.
 
 significant throughput benefits (as shown below), the minor extra write amplification of CC is deemed acceptable.
@@ -281,7 +281,7 @@ Throughput. Figure 9 shows the throughput in all YCSB workloads using different 
 
 In other read- intensive YCSB workloads except Load, CC also demonstrates the best throughput, increasing by  $10.2\%$ $11.7\%$ $32.0\%$ $24.1\%$ $20.2\%$  and  $10.4\%$  compared to other schemes. The performance gain of CC is mainly from (1) efficient (de)compression offloading and/or (2) high space savings using standard algorithms (e.g., ZSTD), resulting in fewer data stored in the LSM tree and thus higher lookup efficiency. Balloon not only restricts zone- to- flash parallelism but also generates two flash accesses for a proportion of read requests, resulting in sub- optimal read performance.
 
-![](images/96deadd00d31ac6b0653569ab5317115411a8018ced74c84fb6d5e5232aa3087.jpg)  
+![](96deadd00d31ac6b0653569ab5317115411a8018ced74c84fb6d5e5232aa3087.jpg)  
 Fig. 9. Throughput in YCSB workloads using different datasets. CRZCR-S: average compression ratio using ZSTD or Snappy. Load: write-only. A:  $50\%$  reads and  $50\%$  updates. B:  $95\%$  reads and  $5\%$  updates. C: read-only. D:  $95\%$  latest reads and  $5\%$  writes. E:  $95\%$  scans and  $5\%$  writes. F:  $50\%$  reads and  $50\%$  read-modify-writes.
 
 TABLE IV AVERAGE AND MAXIMUM CPU USAGE IN YCSB LOAD. THE DATASET IS AMAZON, WHILE OTHERS SHOW A SIMILAR TREND.  
@@ -298,7 +298,7 @@ Host CPU and Memory Usage. Table IV shows the average and maximum CPU usage in Y
 
 Table V shows the average system memory usage in YCSB Load and C (read- only). While eliminating redundant indexes inside the SSD, CC requires more host memory due to the expanded index blocks. The index blocks are necessary to be maintained during both flush/compaction and key- value pair lookups, leading to a memory usage increase in both workloads. Despite this, the memory usage increment is acceptable. For example, compared to ZSTDPC, it is only  $2.9\%$  and  $2.8\%$  in YCSB Load and C, respectively.
 
-![](images/903d8545647ff409d7dee8d842eef8d4dd41323d5ee8b84c9fa93c0420a328d0.jpg)  
+![](903d8545647ff409d7dee8d842eef8d4dd41323d5ee8b84c9fa93c0420a328d0.jpg)  
 Fig. 11. Throughput with different data block sizes in YCSB Load and YCSB C. The dataset is Amazon, while others show a similar trend.
 
 Summary of Results. CCZNS not only maximizes the benefits of compression in write volume and cost (with only minor loss), but also achieves high system performance in throughput, latency, and host CPU usage, while no other scheme can offer all these merits.
@@ -315,7 +315,7 @@ When using multi- chunk CW and single- chunk DR, the throughput CC drops to only
 
 Performance with varied block sizes. The size of the data block (i.e., block size) can affect the (de)compression performance. Thus, we vary the block size to investigate the performance sensitivity of CC by comparing it to the schemes using host CPU compression and external hardware compression. Figure 11 shows the throughput results in YCSB
 
-![](images/6bc37d1f107f953db964c40be52f4037a3f482bd7f63da7895bd28a4f58e4ed8.jpg)  
+![](6bc37d1f107f953db964c40be52f4037a3f482bd7f63da7895bd28a4f58e4ed8.jpg)  
 Fig. 12. Write volumes and ratios of extra write volume (i.e., CC to ZSTD) in YCSB Load under different write loads using different datasets. The grey lines with markers indicate the ratios of extra write volumes.
 
 Load and C (read- only). In YCSB Load, CC substantially outperforms other schemes in all configurations, and the average throughput improvements are  $3.6\times$ ,  $3.8\times$ , and  $1.6\times$  respectively, compared to QAT, ZSTD, ZSTDPC. In YCSB C, the performance gain is smaller but still reaches  $26.2\%$ ,  $44.7\%$ , and  $29.6\%$ , respectively.

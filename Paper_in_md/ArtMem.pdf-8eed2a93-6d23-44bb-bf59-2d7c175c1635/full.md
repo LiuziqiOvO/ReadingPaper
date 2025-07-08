@@ -74,10 +74,10 @@ Figure 2 shows the performance comparison of different strategies on the synthet
 
 Pattern  $S_{1}$  has a high access locality, with over  $90\%$  of accesses occurring in two 500MB hot regions. AutoTiering can quickly distinguish hot pages by sorting pages based on NUMA fault counts. Multi- clock, similar to AutoNUMA and TPP, uses changes in access bits to adjust page placement. These approaches are slower in recognizing hot regions when the hot areas are small but intensely accessed. MEmTIS performs well but marks all pages as hot for this workload. This happens because MEmTIS determines the hotness threshold based on the size of the DRAM tier. As a result, all pages in Pattern  $S_{1}$  can meet this hotness threshold. MEmTIS actively migrates over 15GB of data and keeps these hot pages in the fast memory tier.
 
-![](images/cfae1e8de73d984371f005ad0e13c5c2b7730cc3f26894467e8038bcef4dc58e.jpg)  
+![](cfae1e8de73d984371f005ad0e13c5c2b7730cc3f26894467e8038bcef4dc58e.jpg)  
 Figure 1: Four manually-generated access patterns.
 
-![](images/4f0d3d1e61ed0cabb2c9f33a472f22927cc8f2607c71c8cd9b50acdc7f4449de.jpg)  
+![](4f0d3d1e61ed0cabb2c9f33a472f22927cc8f2607c71c8cd9b50acdc7f4449de.jpg)  
 Figure 2: Performance comparison of seven tiered memory systems under diverse memory access patterns. Results are normalized to the static tiered memory without migrations.
 
 Pattern  $S_{2}$  is designed to simulate scenarios where a region is frequently accessed during a specific period but not thereafter. AutoNUMA, TPP, and AutoTiering exhibit less than a  $10\%$  improvement compared to the static baseline. When unable to adapt to such access patterns, current designs may even have negative impacts. MEmTIS uses an exponential moving average of access frequency to guide page migration, which makes its decisions unreliable for workloads with clear recency characteristics. MEmTIS and Nimble have the worst performance. Both fail to migrate hot pages accurately and make incorrect migrations.
@@ -100,10 +100,10 @@ Table 1: Comparison of existing tiered memory designs.
 
 3.3 The Impact of Memory Migration ScopeMigration scope represents a set of pages that are eligible for migration. The size of the migration scope is controlled by the migration number. Existing work defines the migration scope by setting a hotness threshold as a migration metric [27, 35, 36, 50, 51, 58, 59, 65]. However, Memory access patterns change dynamically during program execution, making the static hotness threshold less effective. Heuristic hotness threshold adjustment methods based on empirical rules can achieve better results [30]. However, such a design may experience many unnecessary page migrations and an inaccurate hotness threshold in some workloads. For example, in Pattern  $S_{1}$ , MEMTIS identifies all pages as hot pages and migrates 15GB of data because the DRAM capacity is large enough, while in reality, only up to 1GB migration is needed. Using frequency alone as the migration metric has limitations. When hot regions are not repeatedly accessed, as in Pattern  $S_{2}$ , the slow cooling operation cannot remove the old hot data and migrate the new hot data in time. Also, for warm pages about to become hot pages, MEMTIS may incorrectly classify them as cold pages and migrate them to slow memory [64]. In Pattern  $S_{4}$ , pages with the same access frequency amount to 20GB, exceeding the DRAM capacity. In such a case, MEMTIS migrates 47GB of pages, causing memory thrashing.
 
-![](images/7002c8c2858cc08b18a5f635ff7b626caaa6e12d3a01126b67908c6bb0b7ce6a.jpg)  
+![](7002c8c2858cc08b18a5f635ff7b626caaa6e12d3a01126b67908c6bb0b7ce6a.jpg)  
 Figure 3: The correlation between performance and DRAM access ratio. The y-axis indicates performance normalized to DRAM-only execution, and the x-axis is the DRAM access ratio. Each point corresponds to a workload. Each subplot represents a recent tiered memory system, where the Pearson correlation coefficients are 0.89, 0.81, and 0.87, respectively.
 
-![](images/2c350af005e5835be210151dad011b7dfb95e453e9a4f201089e02f0d5bfba77.jpg)  
+![](2c350af005e5835be210151dad011b7dfb95e453e9a4f201089e02f0d5bfba77.jpg)  
 Figure 4: MEMTIS default hotness threshold determined by DRAM capacity vs. manually tuning MEMTIS hotness threshold for different applications. The lower the value, the better.
 
 slow memory [64]. In Pattern  $S_{4}$  pages with the same access frequency amount to 20GB, exceeding the DRAM capacity. In such a case, MEMTIS migrates 47GB of pages, causing memory thrashing.
@@ -130,7 +130,7 @@ ArtMem employs a Q- learning- based, model- free reinforcement learning (RL) app
 
 In Q- learning, both states and actions must be discretized to enable efficient indexing and updates within the Q- table. However, defining an excessively large state or action space can significantly slow down the learning process by increasing Q- table overhead and delaying convergence. Therefore, it is critical to design a compact yet expressive set of discrete states and actions that balances memory and computational efficiency with effective reward- driven learning.
 
-![](images/adc0a1a05aba39c98a374361654b5b67c9f4ea9e3eea3665dc0e4e0c5194596a.jpg)  
+![](adc0a1a05aba39c98a374361654b5b67c9f4ea9e3eea3665dc0e4e0c5194596a.jpg)  
 Figure 5: ArtMem architecture, which includes three main layers. Arrows represent the data flow between different functions.
 
 State design. The state must reflect how well the tiered memory adapts to the current program's memory access patterns and perceive changes in access patterns. Based on observation 2, ArtMem uses the access ratio of fast memory to represent the state. The raw access ratio is a continuous value between 0 and 1. We round it to discrete  $\mathrm{k + 1}$  states  $[0,\ldots ,k]$  as follows:
@@ -169,7 +169,7 @@ To address this, ArtMem initially sets the hot page threshold based on DRAM capa
 
 Page sorting. The above design is mainly based on page access frequency but fails to utilize recency information well. NUMA fault- based methods can assist EMA in detecting new hot pages [64] but may introduce high overheads. Therefore, this paper proposes an LRU list- based page sorting method to represent recency information in ArtMem. In Linux, both the fast memory tier and the capacity tier maintain separate active and inactive page lists [22]. ArtMem incorporates recency information by preferentially selecting migration candidates from the inactive list of the fast tier for demotion and the active list of the capacity tier for promotion.
 
-![](images/dc80a044411dc1fd1bb0e33b8ae331d35530875ca2caa9c732bd1d6563f2e052.jpg)  
+![](dc80a044411dc1fd1bb0e33b8ae331d35530875ca2caa9c732bd1d6563f2e052.jpg)  
 Figure 6: The overview of ArtMem. I: The bottom sampling data provides the basis for updating rewards and states in the RL algorithm. At the same time, the sampling data are used to II update the distribution of memory accesses and III maintain the access statistic of each sampled page The RL algorithm IV determines a suitable migration scope based on the given action and then V performs migration between the sorted LRU lists at different tiers.
 
 Existing inter- layer page migration strategies [30, 58] adopt a conservative strategy: when a page is migrated, it retains its activity status from the source memory tier. For instance, a PM page promoted from the inactive list will be placed on DRAM's inactive list. This approach can cause premature demotion, leading to performance jitter. To address this issue, ArtMem adopts a more aggressive policy: regardless of its current status, a migrated page is always inserted at the head of the active list in the fast memory tier. This design ensures that recently accessed pages are promptly recognized and prioritized. As a result, ArtMem performs lightweight sorting of memory pages by considering both recency and access frequency.
@@ -252,7 +252,7 @@ In- memory database. We ran YCSB workloads A, B, C, D, and F in Memcached [21], 
 
 Graph. GAP [12] is a graph analytics framework that runs various graph processing algorithms. Here, we present the evaluation results for SSSP, PR and CC, with the input graphs derived from previous research: Web [17], Twitter [28] and Urand [20]. GAP first loads the graph into memory and then performs multiple workload trials. During the execution phase, the algorithm operates on the data graph already in memory. Due to the inherent randomness of graph algorithms, we recorded the average execution time of 20 running trials to obtain stable performance data. ArtMem shows  $12\% - 509\%$  performance improvements over other works. This significant improvement is mainly attributed to learning the graph access characteristic, as the performance of graph processing algorithms largely depends on data locality. ArtMem, aiming to
 
-![](images/2af1f48e29aac61bf2321103a6360ae092a2a05d4a4374d0ffa796a5be0ab10c.jpg)  
+![](2af1f48e29aac61bf2321103a6360ae092a2a05d4a4374d0ffa796a5be0ab10c.jpg)  
 Figure 7: The performance comparison of ArtMem against other systems under various tiering settings (fast tier vs. capacity tier  $= 2:1$ , 1:1, 1:2, 1:8, 1:16. For example, the DLRM 2:1 configuration is equipped with 48GB DRAM and 24GB PM.). The execution time of AutoNUMA (1:16) is the baseline, with others normalized to that value. The lower the value, the better.
 
 increase the access ratio of the fast memory tier, is better adapted to the locality inherent in graph algorithms. When the fast memory tier is reduced, ArtMem dynamically adjusts the migration priority, maintaining a comparable overall runtime.
@@ -275,10 +275,10 @@ This chapter analyzes the factors that affect performance and other features in 
 
 6.3.2 Fast Memory Access Ratio. We collected the DRAM tier access ratio using the Linux perf tool. To evaluate the necessity of
 
-![](images/f386ffc8ba1b229648a4b02f85f319546d28d876aba639b1c92430f1b71bcc11.jpg)  
+![](f386ffc8ba1b229648a4b02f85f319546d28d876aba639b1c92430f1b71bcc11.jpg)  
 Figure 8: Ablation Study for ArtMem to show the effectiveness of individual ArtMem components and highlight the performance gap between ArtMem and DRAM-only configurations.
 
-![](images/71787bd07ac2b2047b1450f96c0182ab7aa8e38569eaa170cf92f7d27b986b5f.jpg)  
+![](71787bd07ac2b2047b1450f96c0182ab7aa8e38569eaa170cf92f7d27b986b5f.jpg)  
 Figure 9: The changes in DRAM access ratio when using heuristic adjustment strategies compared to those incorporating the RL algorithm. Workloads with different memory access patterns exhibit varying trends.
 
 adaptability under different scenarios as emphasized in our design, we analyzed two workloads, SSSP and CC, to observe variations in DRAM access ratio. Figure 9a shows that the DRAM access ratio increases as the PM allocation decreases. Across all configurations, the RL- based method consistently outperforms the heuristic- based approach. In Figure 9b, when the DRAM- to- PM ratio reaches 1:4, both methods converge to similar DRAM access ratios, with no further significant changes. This plateau is attributed to workload- specific memory access characteristics. The access footprints presented in Figure 10 further illustrate these differences, helping to explain the trends observed in DRAM access behavior.
@@ -289,7 +289,7 @@ Conversely, in Figure 10a, SSSP has a broader distribution of hot regions with m
 
 6.3.3 Number of Migration. To demonstrate the excessive page migrations introduced by heuristic- based strategies in certain scenarios, we present the migration counts for the CC and DLRM workloads in Figure 11. MEMTIS exhibits significant fluctuations in migration volume due to its reliance on a hotness threshold defined by DRAM capacity. Across all evaluated workloads, MEMTIS incurs approximately  $10\times$  higher average CPU overhead from migration threads compared to ArtMem.
 
-![](images/8e00d8cee59d2d332314ef6eee14f3996ca0c1531d52a4b91f2cfa9c39433bb1.jpg)  
+![](8e00d8cee59d2d332314ef6eee14f3996ca0c1531d52a4b91f2cfa9c39433bb1.jpg)  
 Figure 10: The memory access patterns of two workloads, as measured by DAMON[42-44] tool, explain the differing trends in DRAM access ratio in Figure 9.
 
 ArtMem and AutoNUMA maintain relatively low migration volumes in every scenario. This stability in ArtMem stems from two design principles: first, the RL agent is penalized for unnecessary migrations through the reward function; second, page migrations are prioritized via access- based sorting, improving overall migration efficiency. ArtMem migrated 30,000 times fewer pages in the DLRM workload compared to CC. This is because DLRM's memory access is largely unskewed, with only a few hot memory regions. ArtMem can adapt to such access patterns through learning, reducing unnecessary migrations.
@@ -298,12 +298,12 @@ ArtMem and AutoNUMA maintain relatively low migration volumes in every scenario.
 
 6.3.5 Exploring Customizability: RL Algorithm Comparison. We compared the performance of Q- learning and SARSA algorithms in tiered memory management. We ran a workload under four scenarios with six memory ratios, normalizing the performance improvements and taking the average. The experimental results in Figure 13 show that both algorithms perform similarly across workloads and access patterns. This indicates that within the current design of the ArtMem framework, both Q- learning and SARSA can effectively adapt to changes in memory access patterns and
 
-![](images/8719e0a0cfa7f8e70bec0e1d521b2ef81cff65ef654a2ab8a36e5e1626c56be4.jpg)
+![](8719e0a0cfa7f8e70bec0e1d521b2ef81cff65ef654a2ab8a36e5e1626c56be4.jpg)
 
-![](images/f03f5dc9fc3ae8c26f857fd04904e4e726a0af35ae272c11888d73edef52face.jpg)  
+![](f03f5dc9fc3ae8c26f857fd04904e4e726a0af35ae272c11888d73edef52face.jpg)  
 Figure 12: The change in the number of migrations over time when using latency and DRAM access ratio as RL rewards in ArtMem while running XSBench. It also reflects ArtMem's adaptability.
 
-![](images/1200551367a140300e09a558111cec4ecb64819d1705a1c4e04418f6933d73bd.jpg)  
+![](1200551367a140300e09a558111cec4ecb64819d1705a1c4e04418f6933d73bd.jpg)  
 Figure 13: RL algorithm Figure 14: Sensitivity to initial comparison. applications.
 
 provide consistent performance improvements. This demonstrates the broad adaptability and effectiveness of the proposed approach.
@@ -314,7 +314,7 @@ Ideally, the Q- table should be trained on the target application or a workload 
 
 6.3.7 Hyperparameter Sensitivity. Figure 15 shows the overall improvement achieved by ArtMem under six different memory tier ratios, evaluated across various RL and system parameters. Our
 
-![](images/a96bd0bafb6de1404afb871e0296e0bd2031ce2d587cdec3bfae79863a9d1b43.jpg)  
+![](a96bd0bafb6de1404afb871e0296e0bd2031ce2d587cdec3bfae79863a9d1b43.jpg)  
 Figure 11: Page migration volume.  
 Figure 15: Sensitivity study for hyperparameters.
 
@@ -322,10 +322,10 @@ experiments achieved optimal performance with a learning rate of  $\alpha = e^{-
 
 6.3.8 Memory Size Scalability. ArtMem is evaluated by increasing the memory footprint of CC from 69GB to 290GB (the maximum size of the graph) by changing the input graph size. In all experiments, the size of the fast tier is fixed at 54GB. As shown in Figure 16a, with the increase in memory footprint, ArtMem's performance improves
 
-![](images/0f47a199b1f735822f99cbafeddfc742db2ec4b91abaf977315c1c7c67f66eee.jpg)  
+![](0f47a199b1f735822f99cbafeddfc742db2ec4b91abaf977315c1c7c67f66eee.jpg)  
 Figure 16: Performance comparison by (a). varying memory sizes, (b). varying relative latency, and (c). dynamic and complex access patterns.
 
-![](images/732ba30f35aa9df0d7c8d85f3b9af79999710012aff44806de192bf317e0f63c.jpg)  
+![](732ba30f35aa9df0d7c8d85f3b9af79999710012aff44806de192bf317e0f63c.jpg)  
 Figure 17: The variation in migration operations and DRAM access ratio across different systems when running a mixed workload.
 
 by at least  $6\%$ . These results demonstrate that ArtMem can scale to larger memory sizes.

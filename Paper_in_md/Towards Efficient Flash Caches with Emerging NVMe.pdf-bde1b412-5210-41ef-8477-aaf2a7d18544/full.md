@@ -70,7 +70,7 @@ The lifetime of an SSD is inversely proportional to the device- level write ampl
 
 High DLWA results from increased garbage collection operations to move valid pages to free up SSD blocks. Consequently, the SSD spends more time in the active state than in the idle state which results in a larger energy consumption [18, 29, 53]. Lower DLWA results in lower consumption of operational energy and translates to higher operational carbon efficiency. Although operational carbon efficiency optimization is important, big carbon efficiency gains are not expected from it. This is because SSDs are designed to be energy efficient and optimized to switch to idle state when not in use.
 
-![](images/e91060924d73fb994f34e19bfcdeb7b3edbf77622059927a652f9f8c09d3cdc7.jpg)  
+![](e91060924d73fb994f34e19bfcdeb7b3edbf77622059927a652f9f8c09d3cdc7.jpg)  
 Figure 1. CacheLib Architecture Overview
 
 # 2.3 Flash Caches and CacheLib
@@ -93,7 +93,7 @@ Challenges in Production Flash Caches and CacheLib. The central challenge of Fla
 
 The ratified NVMe Flexible Data Placement technical proposal [19] represents an evolution in the space of SSD data placement based on lessons learned in the wild over the past decade. It is a merger of Google's SmartPTL [52] and Meta's Direct Placement Mode proposals to enable data placement on Flash media without the high software engineering costs of explicit garbage collection of ZNS [24] and low- level media control of Open- Channel SSD proposals [25]. It borrows elements from the multi- streamed SSD interface [40] that was proposed a decade ago but did not really take off due to a lack of industry and academic interest. It has been designed with backward compatibility in mind so that applications can work unchanged with it. The choice of leveraging data placement and evaluating its costs and benefits has been left to the application. This enables investment of engineering effort in a pay- as- you- go fashion instead of an upfront cost.
 
-![](images/4d3975deee692eb48cb498b2e86ec70b729f9181c7dcfbe89a3998c84ebfacca.jpg)  
+![](4d3975deee692eb48cb498b2e86ec70b729f9181c7dcfbe89a3998c84ebfacca.jpg)  
 Figure 2. Conventional SSD vs FDP SSD Architecture.
 
 # 3.2 Physical Isolation in SSDs with FDP
@@ -152,7 +152,7 @@ In this section, we discuss the fit of FDP and the opportunities afforded by it 
 
 Insight 1: Intermixing of SOC and LOC data leads to high DLWA. Large cache items are written into the LOC in a log- structured fashion utilizing a FIFO or LRU eviction policy. This results in a sequential write pattern to the SSD. Small cache items are written into SOC buckets using a uniform hash function. Each item insert causes the entire SOC bucket (size is configurable but default is 4 KB) to be written to the
 
-![](images/f36ee9c50f7286d326f6e41f60c8d838d4b7e2302d41d1225771d47494e921d5.jpg)  
+![](f36ee9c50f7286d326f6e41f60c8d838d4b7e2302d41d1225771d47494e921d5.jpg)  
 Figure 3. SSD cross-section.  $13$  shows the intermixing of LOC's sequential and cold data with SOC's random and hot data in SSD blocks.  $16$  shows the inefficient use of device OP by both LOC and SOC data.  $2a$  shows that with SOC data being segregated, invalidation of its data can result in free SSD blocks.  $2b$  shows that with FDP, LOC data which is written sequentially will not cause DLWA.  $2c$  shows the efficient use of device OP exclusively by SOC data to cushion SOC DLWA.
 
 SSD. Contrary to LOC, SOC writes generate a random write pattern to the SSD.
@@ -231,7 +231,7 @@ CacheLib is a popular building block for various caching services with diverse u
 
 1. Keep it simple [41]. This guiding principle enabled us to merge our changes upstream given the diverse use cases of
 
-![](images/835269838dc4dd5502ee2ed69e994e353e82a484371cd37d4d3ce73a51ae4962.jpg)  
+![](835269838dc4dd5502ee2ed69e994e353e82a484371cd37d4d3ce73a51ae4962.jpg)  
 Figure 4. CacheLib I/O Path.  $(\hat{1}\mathrm{a})$  denotes the placement handle allocator that is responsible for allocating placement handles that consume FDP.
 
 CacheLib and the need for stability and maintainability of the codebase.
@@ -283,7 +283,7 @@ We use the CacheBench workload generator and trace replaying tool [3] to run the
 
 Metrics. We focus on DLWA as the primary metric to evaluate the efficacy of our data segregation changes since it has a direct correlation to endurance and embodied carbon emissions. We measure DLWA by using the nvme- cli tool
 
-![](images/3bfeeca04cf21bea587c8f935226d4157d4351bcc961c8ca1a52f00aa7f1bdf2.jpg)  
+![](3bfeeca04cf21bea587c8f935226d4157d4351bcc961c8ca1a52f00aa7f1bdf2.jpg)  
 Figure 5. DLWA over 60 hours with the KV Cache workload using  $50\%$  device utilization, 42GB of RAM and  $4\%$  SOC size. FDP-based segregation results in a  $1.3x$  reduction in DLWA.
 
 to query log pages (nvm get- log) from the SSD controller that tracks the host bytes written to it and the device bytes that were written on NAND media over an interval of 10 minutes. We reset the SSD to a clean state before every experiment by issuing a TRIM for the entire device size. We use the CacheBench tool to measure and report throughput, latency, DRAM and NVM cache hit ratios, and ALWA for our experiments.
@@ -302,7 +302,7 @@ Figure 6 shows the impact of varying the SSD capacity used for caching upon vari
 
 In previous sections, we demonstrated the effect of the FDP- based segregation on DLWA with the read- intensive KV Cache workload. We now explore the efficacy of our solution with the write- heavy Twitter cluster12 workload and the write- only KV Cache workload (WO KV Cache). We run experiments with both workloads at  $50\%$  and  $100\%$  device utilization,  $4\%$  of SOC size and use  $\sim 16$  GB and  $\sim 42$  GB of DRAM for the Twitter and WO KV cache workloads respectively as used in past research [23, 48]. From Figure 7 and 8, we can see that the DLWA trends observed with the KV Cache workload at  $50\%$  and  $100\%$  device utilizations remain
 
-![](images/97940d7064469f2672a9eaa5e55ebcc26ba8351e66d3c6967ea19c406875e5f6.jpg)  
+![](97940d7064469f2672a9eaa5e55ebcc26ba8351e66d3c6967ea19c406875e5f6.jpg)  
 Figure 6. Effect of varying SSD utilization for caching with KV Cache Workload on DLWA and other CacheLib performance metrics like throughput,  $\mathrm{p99}$  read and write latency, and DRAM and SSD cache hit ratios. FDP-based segregation results in a DLWA of 1 without affecting performance irrespective of device utilization. At higher utilizations, FDP improves  $\mathrm{p99}$  read and write latency.
 
 consistent with the Twitter and WO KV Cache workloads as well. The FDP- based segregation achieves a DLWA of  $\sim 1$  with both these challenging write- intensive workloads dominant in small object accesses.
@@ -311,17 +311,17 @@ consistent with the Twitter and WO KV Cache workloads as well. The FDP- based se
 
 In previous sections, we observed excellent DLWA behaviour for the KV cache workload primarily because our implementation segregates SOC's random and hot data from LOC's sequential and cold data. The small SOC size of  $4\%$  paired with data segregation enabled a high invalidation of SOC data in the SSD and allowed device overprovisioning to efficiently cushion garbage collection of SOC data. To further validate our analysis, we study the impact of increase of SOC size (random writes) on DLWA beyond the device overprovisioning size, which is typically  $7 - 20\%$  of SSD capacity. We can see from Figure 9 that when SOC size is increased from
 
-![](images/55bb9af674086768e03921aaf1418f8ef0af4d219c4f9fd8c9e63c0e1620179f.jpg)  
+![](55bb9af674086768e03921aaf1418f8ef0af4d219c4f9fd8c9e63c0e1620179f.jpg)  
 Figure 7. DLWA over 60 hours with the Twitter cluster 12 workloads with 16GB RAM,  $4\%$  SOC size. a.)  $50\%$  device utilization and b.)  $100\%$  device utilization. FDP-based segregation achieves a DLWA of 1.
 
 the default  $4\%$  to  $64\%$  the DLWA of our implementation increases from 1.03 to 2.5 while the DLWA without segregation remains above 3 for all SOC sizes.
 
 As the SOC size crosses the device overprovisioning size, the DLWA with FDP no longer remains 1. The high DLWA at larger SOC sizes occurs because the spare blocks are fewer than the SOC data blocks. Consequently, the spare blocks coming from the device overprovisioning space fail to provide an adequate cushion for the garbage collection of SOC data. Despite the lack of cushioning, we can see that data segregation is helpful in invalidating the SOC data blocks and reduces movement of LOC data upon garbage collection. At very high SOC sizes e.g.,  $90\%$  and  $96\%$  we observe that data segregation does not yield any benefits. At very high SOC sizes, there is a high probability of erase blocks containing both valid and invalid SOC data. In this scenario, data intermixing might be beneficial since sharing of invalid SOC and LOC data in an erase block would minimize data movement. Moreover, garbage collection has a lower threshold when
 
-![](images/f2be5931026faf727408d408fd4f7d78ef6c9807fe7ba401c0edd7b8ff286610.jpg)  
+![](f2be5931026faf727408d408fd4f7d78ef6c9807fe7ba401c0edd7b8ff286610.jpg)  
 Figure 9. Average DLWA with the KV Cache workload using  $100\%$  device utilization, 42GB of RAM and varying SOC size from  $4\%$  to  $96\%$  of the SSD size. FDP's DLWA gains diminish with an increase in the SOC size beyond the device overprovisioning size.
 
-![](images/9003c5e92c9efcea4a7d1f82f1ca19d61e8748c93e4ef93985e93536de5fb147.jpg)  
+![](9003c5e92c9efcea4a7d1f82f1ca19d61e8748c93e4ef93985e93536de5fb147.jpg)  
 Figure 8. DLWA over 60 hours with the WO KV Cache workload with 42 GB RAM and  $4\%$  SOC size. a.)  $50\%$  device utilization and b.)  $100\%$  device utilization. FDP-based segregation achieves a DLWA of 1.
 
 FDP is enabled compared to when it is disabled that may accentuate the DLWA of data segregation. We observe that increasing the SOC size does not benefit the cache behavior of the workload dominant in small objects since the hit ratio almost remains unchanged.
@@ -330,7 +330,7 @@ FDP is enabled compared to when it is disabled that may accentuate the DLWA of d
 
 In previous sections, we showed large gains in DLWA from using FDP- based segregation in CacheLib. These gains translate to a longer SSD lifetime that leads to reductions in embodied carbon emissions. The DLWA gains also aid in improving the operational efficiency of SSDs due to fewer device garbage collection operations. This results in a reduction in operational carbon emissions. In this section, we discuss the promise of FDP as a sustainable solution to combat carbon emissions.
 
-![](images/ed830c6154e7dbc75f48170afc4e0f4586b6199c4ed29338c6b5e89db2b52962.jpg)  
+![](ed830c6154e7dbc75f48170afc4e0f4586b6199c4ed29338c6b5e89db2b52962.jpg)  
 Figure 10. Analysis of carbon savings on FDP vs Non-FDP with the KV Cache workload. a.) Embodied carbon emissions reduce drastically with FDP and b.) Garbage Collection events are reduced by a factor of  $\sim 3.6$  with FDP.
 
 FDP- based segregation reduces carbon emissions. To calculate the embodied emissions, we use Theorem 2 presented in Section 4.2.1 which models the embodied carbon emissions as a function of DLWA, system lifecycle period, SSD warranty, and carbon emitted by the SSD manufacturing process. We use a system lifecycle and SSD warranty of 5
@@ -349,7 +349,7 @@ Table 2 shows the overall hit ratios, NVM hit ratios, throughput and effective c
 
 # 6.7 FDP-based segregation enables multi-tenant KV Cache deployments
 
-![](images/101fb77c227315d4c245d5f31210f3a300e50518aec2ce62c0151fdc90a0c512.jpg)  
+![](101fb77c227315d4c245d5f31210f3a300e50518aec2ce62c0151fdc90a0c512.jpg)  
 Figure 11. DLWA over 60 hours with the WO KV Cache workload running on two tenants each using 930GB SSD space and  $4\%$  SOC size and 42 GB RAM. FDP enables a  $3.5x$  reduction in DLWA in this multi-tenant deployment.
 
 Without the use of FDP,  $50\%$  of the SSD had to be reserved for host overprovisioning to achieve an acceptable DLWA. With FDP, however, we demonstrated that a DLWA of  $\sim 1$  can be achieved without any host overprovisioning. This effectively frees up half of the device, allowing it to be utilized for other purposes. One option we explored was to increase the SSD capacity for a single CacheLib instance from  $50\%$  to  $100\%$  .Another option involves running two CacheLib instances that share the SSD, each using half of the available space for its Flash cache to simulate a multi- tenant setup.
@@ -504,12 +504,12 @@ $$
 
 Figure 12 shows the minimal error in estimating CacheLib's DLWA using the DLWA model (Section 4.2) in comparison to the observed DLWA obtained from experiments with the KV Cache workload. We see that at high SOC values the model diverges by a maximum of  $\sim 16\%$  from the observed DLWA. We observe that at high SOC values, the model diverges from the empirical results because it assumes a uniform distribution of keys to SOC buckets. This is actually not the case due to skew causing the observed DLWA to be lower than the predicted DLWA. Note that we ran this experiment at  $100\%$  device utilization. At lower device utilization, the error will be similar to low SOC values due to low DLWA.
 
-![](images/a0bdcf1da54840a696400a699a2d140933ee585c4d4d9587469d6896d61b8ea7.jpg)  
+![](a0bdcf1da54840a696400a699a2d140933ee585c4d4d9587469d6896d61b8ea7.jpg)  
 Figure 12. DLWA obtained from experiments using the KV Cache workload at  $100\%$  device utilization, 42GB RAM and varying SOC size in comparison to the DLWA obtained from the formula. We see minimal error in DLWA estimation using the formula.
 
 # B FDP-based Segregation Benefits with WO KV Cache Workload
 
 Figure 13 shows the observed DLWA, p99 read and write latencies with FDP- enabled CacheLib using the WO KV Cache workload across different device utilization. We see similar trends as observed before with other workloads in Section 6.3 and Section 6.4 i.e., increasing gains in DLWA and lowering of p99 read and write latency at higher device utilizations. At  $100\%$  device utilization, FDP- based data segregation obtains  $3.5x$  gains in DLWA,  $2.2x$  gains in p99 read latency, and  $9.5x$  gains in p99 write latency.
 
-![](images/e400f4ff952ed4ced5afefcdf9fbf9c87f8f4f0491da4c336f200b5742236ae7.jpg)  
+![](e400f4ff952ed4ced5afefcdf9fbf9c87f8f4f0491da4c336f200b5742236ae7.jpg)  
 Figure 13. Effect of varying SSD utilization for caching with WO KV Cache Workload on DLWA and p99 read and write latency. FDP-based segregation results in a DLWA of 1 without affecting performance irrespective of device utilization. At higher utilizations, FDP improves p99 read and write latency.

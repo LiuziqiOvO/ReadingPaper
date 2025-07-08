@@ -26,7 +26,7 @@ As NVMe storage devices advance, optimizing performance and extending lifespan r
 
 This study examines FDPVirt in various aspects. First, we assess its ability to closely replicate the performance of an FDP Prototype device, particularly in terms of I/O characteristics like read/write latency and GC behavior. Second, we explore how fine- grained data placement strategy influences Write Amplification Factor (WAF),
 
-![](images/82b658730555e5c8af75381e1aa2d367b989c4e97a3381855bfa6663ce4cfca2.jpg)  
+![](82b658730555e5c8af75381e1aa2d367b989c4e97a3381855bfa6663ce4cfca2.jpg)  
 Figure 1: Flash Translation Layer of FDPVirt.
 
 showing that FDPVirt can reduce WAF by up to  $26.3\%$  for workloads which are composed of mixed write streams of various hotness levels. Additionally, we examine the impact of RU sizes on WAF, which further lowers WAF by  $8.3\%$ . These findings demonstrate that FDPVirt provides a versatile platform for investigating FDP strategies and optimizing SSD performance and endurance.
@@ -43,19 +43,19 @@ The evaluation is conducted on an Intel i7- 12700K processor (2.70 GHz, 12 physi
 
 Emulating Performance Characteristics of the FDP Prototype: We assess FDPVirt's ability to emulate performance by measuring read and write bandwidth across I/O sizes from 4KB to 128KB using FIO.
 
-![](images/72cf5714cd95dd5168b7322653ea5b912ddd38ea4a531a47421a926964d95f96.jpg)  
+![](72cf5714cd95dd5168b7322653ea5b912ddd38ea4a531a47421a926964d95f96.jpg)  
 Figure 2: Performance similarity between real device and FDPVirt on various I/O sizes.
 
 As shown in Figure 2, the bandwidth difference between FDPVirt and the real FDP device is  $11.1\%$  for reads and  $4.1\%$  for writes, respectively, on average. Especially, FDPVirt shows more similar performance in larger I/O sizes. However, at smaller I/O sizes, the disparity increases due to firmware optimization in the real device, such as hardware- driven I/O automation that reduces firmware overhead. This optimization accelerates small I/Os in the real device. Despite this, FDPVirt closely mirrors the FDP prototype's performance, even considering complex SSD optimizations.
 
-![](images/e515837aababbea0958b881fba3d590e7931b2be896e70196d8b0f71b754797b.jpg)  
+![](e515837aababbea0958b881fba3d590e7931b2be896e70196d8b0f71b754797b.jpg)  
 Figure 3: Latency and GC bandwidth similarity.
 
 In addition to bandwidth, we evaluate the latency distribution for 32 KiB read and write requests, comparing FDPVirt with the real FDP Prototype SSD. As shown in Figure 3a, the latency distribution of both devices are remarkably similar, demonstrating the accuracy of FDPVirt in emulating real- world FDP device behavior under typical workloads. To evaluate the accuracy of emulation during SSD GC, we perform random writes followed by warming up (i.e., fill the whole device space with sequential writes). As seen in Figure 3b, both FDPVirt and the real device experience similar performance drops during GC, with FDPVirt closely replicating the real device's behavior, maintaining a steady performance after the initial drop. This further validates the effectiveness of FDPVirt in mimicking real- world conditions.
 
 Impact of Fine- Grained Data Placement on WAF: We examine how data placement strategy on FDPVirt impacts write amplification by increasing the number of RUs from 1 to 16. In this evaluation, we use mixed workloads with various levels of hotness. To generate different hotness, each application thread submits I/Os at a different rate to its dedicated LBA range (i.e., higher I/O rate, hotter temperature). We group workloads that have similar hotness and make each group share the same RU. By distributing RUs to application threads in this manner, a higher number of RUs induces finer data placement by hotness. Because actively triggered GC is required to show the impact of fine- grained data placement on WAF, we sequentially fill the whole SSD space, before submitting writes with different hotness. As depicted in Figure 4, increasing the number of RUs leads to a reduction in WAF, with improvements of up to  $26.3\%$  observed. This highlights that granular control over data placement significantly lowers write amplification, particularly in workloads with the mixed pattern of various hotness levels, by distributing data more effectively across RUs.
 
-![](images/8670bc6536974ecdd3bb8cb133825a9a9faf22c5336e2edbb523c181dc236b05.jpg)  
+![](8670bc6536974ecdd3bb8cb133825a9a9faf22c5336e2edbb523c181dc236b05.jpg)  
 Figure 4: Reduction in WAF as the number of RUs increases in workload distribution.
 
 Impact of RU Size on WAF: RU size plays a critical role in affecting WAF. Smaller RUs offer finer granularity in data placement, reducing WAF by minimizing internal data movement and GC overhead. However, real- world devices often have fixed RU sizes, it is challenging to evaluate the impact of RU sizes. FDPVirt provides flexibility on RU sizes (i.e., user- configurable feature), enabling empirical evaluation of WAF. Our experiments show that halving the RU size reduces WAF by  $8.3\%$  (i.e., from 3.12 to 2.86) due to more efficient garbage collection and better data hotness alignment. In contrast, increasing RU size raises WAF to 4.48, showing that larger RUs are less effective with diverse workloads. While real FDP devices has inflexibility in RU size due to the closed modification of firmware and hardware in SSDs, FDPVirt offers a flexible platform to explore how RU size adjustments influence WAF. This flexibility provides valuable insights for future SSD designs, where tuning RU sizes based on workload characteristics could enhance performance and endurance.

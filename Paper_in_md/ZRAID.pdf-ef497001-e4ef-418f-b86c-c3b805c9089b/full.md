@@ -66,7 +66,7 @@ Given that ZNS SSDs do not allow overwriting, the full parity can only be writte
 
 In ZNS RAID, where only sequential writes are allowed, partial stripes tend to be quickly promoted into full stripes, making PP blocks short- lived metadata. Despite this, PP blocks must be stored in non- volatile storage to safeguard against power failures before full stripe promotion. This incurs additional overhead in terms of performance, storage space, and device lifetime.
 
-![](images/365eed19144f1fb089ed6567068ec26e93b0c54f98ee51d47b328b3c91fdf21f.jpg)  
+![](365eed19144f1fb089ed6567068ec26e93b0c54f98ee51d47b328b3c91fdf21f.jpg)  
 Figure 1. Operation of the ZRWA [9].
 
 # 2.3 Zone Random Write Area (ZRWA)
@@ -125,7 +125,7 @@ The mq- deadline scheduler, the only ZNS- compatible scheduler in the latest Lin
 
 Existing ZNS RAID systems, comprised of normal zones, inherit the limitations of ZNS- compatible schedulers. However, simply switching to ZRWA- enabled zones and employing the no- op scheduler without adjusting the original structure is insufficient. Generic schedulers do not consider the ZRWA range when dispatching commands, leading to potential write failures due to the random order of dispatched requests. Specifically, if a request for a higher address that ends within the IZFR is dispatched first, it can trigger an implicit ZRWA flush, advancing the WP (see  $\S 2.3)$  .A subsequent request for a lower address than the advanced WP would then fail. We have frequently encountered write failures when using the no- op scheduler without properly managing the request range in ZRWA- enabled zones.
 
-![](images/6ac03e831ef4e4e8f9063c125c3769009b1e738a67a1fa34017776eb39399e7a.jpg)  
+![](6ac03e831ef4e4e8f9063c125c3769009b1e738a67a1fa34017776eb39399e7a.jpg)  
 Figure 2. Overall architecture of ZRAID.
 
 # 3.4 Complex Recovery for Write Atomicity
@@ -144,7 +144,7 @@ This section outlines the fundamental operation of two pivotal mechanisms in ZRA
 
 ZRAID utilizes ZRWA- enabled zones where data chunks are initially placed in the ZRWA. These chunks are later
 
-![](images/2be682d46c06985f26fd988fa11204799211a5eaa853cc4f5e455fa27af46498.jpg)  
+![](2be682d46c06985f26fd988fa11204799211a5eaa853cc4f5e455fa27af46498.jpg)  
 Figure 3. Layout of a single physical zone.
 
 made immutable through the WP advancement, triggered by the explicit ZRWA flush command. Partial parity blocks are placed ahead of the data chunks within the ZRWA and are subsequently overwritten by the data chunks from future writes.
@@ -175,7 +175,7 @@ $$
 
 Figure 4 illustrates how the placement rule of PP works in a RAID- 5 configuration with four ZNS devices. Each square represents a chunk, while the triangles beneath the squares represent the WP of each device, which will be further described in §4.4. In this example, write requests  $W0$ ,  $W1$ , and  $W2$  are submitted, and the three subfigures respectively depict the state after each request is processed. The data chunks comprising each request are shown at the top of the figure. It is assumed that the stripe prior to  $W0$  is in a full state, with the WPs located at the end of that stripe. The device number where the first write starts is set to 0, and all write operations are assumed to be aligned to the chunk size, with  $N_{zrw_a}$  set to 8 chunks.
 
-![](images/5e4bee42b968707df58ac7f658a92c03d8e90035c8ac8cb2a12d70d75703fc34.jpg)  
+![](5e4bee42b968707df58ac7f658a92c03d8e90035c8ac8cb2a12d70d75703fc34.jpg)  
 Figure 4. ZRAID operation example in RAID-5 configuration.
 
 The first write,  $W0$ , forms a partial stripe that necessitates the PP,  $PP0$ . Given that  $Dev(C_{end}(W0)) = 1$ , Rule 1 dictates that  $Dev(PP0) = 2$  and  $Offset(PP0) = Str(C_{end}(W0)) + 8 / 2 = 4$ . Therefore, the position of  $PP0$  is determined to be chunk number 4 on device 2, while the content is derived from XORing  $D0$  and  $D1$ . The generated sub- I/Os for writing  $D0$ ,  $D1$ , and  $PP0$  are simultaneously submitted to their respective devices, by the I/O submitter.
@@ -234,7 +234,7 @@ Due to the necessity for the WP to advance in two steps within a chunk, the chun
 
 During recovery, ZRAID reads the WPs of all devices to identify the most recent consistent state before the failure. As an example, consider a situation where power and device 2 fail simultaneously after  $W2$  is written as shown in Figure 4(c).Given that  $WP(2)$  is unreadable,ZRAID tries to find the most recent write  $X$  which was  $W2$  from the remaining WPs.  $WP(0)$ $WP(1)$  ,and  $WP(3)$  indicate that  $D5,D4$  and  $D6$  are the last chunks of the most recently completed write  $X$  , respectively. Because  $D6$  is at the last position in the array, ZRAID can determine that  $C_{end}(X)$  before the crash was  $D6$  . The location of the corresponding PP chunk  $(PP2)$  can be statically determined by Rule 1. PP2 is then used to reconstruct the chunk  $D6$  which was lost due to the failure.
 
-![](images/6b0836f6bc3321ccfd33e60bfcfee0a89a43cb488997079d42f07a7c744e5d16.jpg)  
+![](6b0836f6bc3321ccfd33e60bfcfee0a89a43cb488997079d42f07a7c744e5d16.jpg)  
 Figure 5. Corner cases and their handling.
 
 ZRAID advances the WPs only after all sub- I/Os in a write are completed. For partially completed writes, the WPs do not advance for the successful chunks, which thus remain in the ZRWA. During recovery, these blocks are reused for subsequent writes. This simple rollback- based recovery solves the complexity of supporting write atomicity in existing ZNS RAID systems, as mentioned in §3.4.
@@ -253,7 +253,7 @@ As the WPs advance, the distance between the active stripe and the end of a zone
 
 This corner case is relatively rare, constituting only  $0.093\%$  of occurrences in an array based on ZN540 devices. For this reason, ZRAID does not allocate a separate zone exclusively for this purpose. Instead, those partial parity chunks are logged in the superblock (SB) zone, which is used for storing array- wide metadata. Also, ZRAID provides a configurable option that can dynamically adjust the data- to- PP distance to further reduce the amount of PP chunks written into the superblock zone.
 
-![](images/80009bd29f2763fe70ca2ce786a9ac62578cda368ad56b099983027548946a1a.jpg)  
+![](80009bd29f2763fe70ca2ce786a9ac62578cda368ad56b099983027548946a1a.jpg)  
 Figure 6. Handling chunk-unaligned flush.
 
 # 5.3 Chunk-unaligned Flush
@@ -272,7 +272,7 @@ All experiments were conducted on a server equipped with one 40- core Intel Xeon
 
 ZRAID was implemented by modifying the code of RAIZN, which is publicly available on Github [22]. However, in our attempts to reproduce the results of RAIZN as published in the paper, the performance numbers of the code were far below those reported. We identified that the single FIFO structure used to dispatch tasks to the I/O workqueue was a
 
-![](images/8c2c50afceaa4a78bf9fd8060d7100cd617a5778226f7285677237475f215c65.jpg)  
+![](8c2c50afceaa4a78bf9fd8060d7100cd617a5778226f7285677237475f215c65.jpg)  
 Figure 7. fio write throughput over different request sizes.
 
 bottleneck, and to resolve this issue, we modified it to multiple FIFO structures. In subsequent experimental results, "RAIZN" denotes the original RAIZN code, while "RAIZN+" refers to the version we modified to fix the single FIFO queue bottleneck. RAIZN+ demonstrates performance that aligns more closely with the results presented in the paper compared to RAIZN. When comparing the FIO results, RAIZN+ performs approximately  $20\%$  lower than the reported results at a 64KB block size,  $20\%$  higher at 256KB, and shows similar performance at 4KB.
@@ -295,7 +295,7 @@ To analyze how much each enhancement made by ZRAID contributes to the overall pe
 
 ZRWA (or simply Z) denotes the version that introduces ZRWA- enabled zones to RAIZN+ in place of normal zones. ZRWA demonstrates lower performance than RAIZN+ in
 
-![](images/3b0983690aa5fbb05e1e0625ea8d2ad30a879cba6c132cdb784d348aed56aa16.jpg)  
+![](3b0983690aa5fbb05e1e0625ea8d2ad30a879cba6c132cdb784d348aed56aa16.jpg)  
 Figure 8. Throughput comparison for fio 8KB writes across ZRAID variants.
 
 some cases due to the synchronization overhead.  $\mathbf{Z} + \mathbf{S}$  replaces the mq- deadline I/O Scheduler in  $\mathbf{Z}$  with the no- op scheduler which supports high queue depths.  $\mathbf{Z} + \mathbf{S}$  shows an average performance increase of about  $10\%$  over  $\mathbf{Z}$ , addressing the throughput loss caused by the mq- deadline scheduler mentioned in  $\S 3.3$ .  $\mathbf{Z} + \mathbf{S} + \mathbf{M}$  further removes the Metadata header for PP chunks from  $\mathbf{Z} + \mathbf{S}$ . PP metadata header blocks amplify the write amount by about  $19\%$  in the 8KB fio workload. By eliminating these blocks,  $\mathbf{Z} + \mathbf{S} + \mathbf{M}$  outperforms  $\mathbf{Z} + \mathbf{S}$  by an average of  $10.3\%$ .
@@ -312,7 +312,7 @@ Filebench. To conduct filebench tests, we used F2FS, a representative ZNS- compa
 
 We selected FILESERVER (write- heavy), OLTP, and VARMAIL (small random read/write) for our tests. To highlight the performance of the underlying ZNS RAID system, all file operations in the workloads, except for VARMAIL, were executed as direct I/Os. The number of files for each workload was increased to 40 times the default settings to ensure an adequate working set size. For the FILESERVER workload, the iosize parameter was varied from 4KB to 1MB to demonstrate the effect of the write size. For the OLTP workload, the iosize was changed from 2KB to 4KB (the block size of the ZN540) to meet the direct I/O restriction. All other parameters were kept at their default settings.
 
-![](images/9dfb0912a43e976fee9b1fd5f911d2575c41aa13a0a658ffed46c83a84606d82.jpg)  
+![](9dfb0912a43e976fee9b1fd5f911d2575c41aa13a0a658ffed46c83a84606d82.jpg)  
 Figure 9. Throughput of 111ebench workloads.
 
 Figure 9 illustrates the IOPS comparisons among RAIZN,  $\mathrm{RAIZN + }$ , and ZRAID, with results normalized to  $\mathrm{RAIZN + }$ . In the FILESERVER workload with a 4KB iosize, ZRAID achieves a throughput improvement of  $14\%$  over  $\mathrm{RAIZN + }$ . However, at a 1MB iosize, the influence of PP overhead diminishes, resulting in ZRAID's performance being nearly identical to  $\mathrm{RAIZN + }$ . Smaller write sizes increase the PP- to- data ratio, thereby amplifying ZRAID's benefits. In the OLTP and VARMAIL workloads, ZRAID shows performance improvements of  $12.8\%$  and  $16.2\%$  over  $\mathrm{RAIZN + }$ , respectively. The write sizes of these workloads are mostly smaller than 16KB, creating an environment well- suited for ZRAID's optimizations.
@@ -323,7 +323,7 @@ db_bench. We used a suite of benchmarks from RocksDB [19] to evaluate the perfor
 
 The FILLSEQ, FILLRANDOM, and OVERWRITE workloads provided by the db_bench [18] tool were used for our experiments. Each workload has ten million keys and operations with a value size of 8000 bytes. The RocksDB environment
 
-![](images/bd146607420cd32db8252156bd72ec869b7a2f9b6f3e4a61c94de2c2ee404ca2.jpg)  
+![](bd146607420cd32db8252156bd72ec869b7a2f9b6f3e4a61c94de2c2ee404ca2.jpg)  
 Figure 10. Throughput comparison of ZRAID variants using db-bench workloads.
 
 was configured with four worker threads, and the number of background jobs was set to 16 for both flush and compaction. To circumvent the effect of the page cache in all experiments, we used the flags - sync_use_direct_io_for_flush_and_compaction and - use_direct_reads.
@@ -338,7 +338,7 @@ Due to the permanent storage required for PP blocks,  $\mathrm{RAIZN + }$  exper
 
 We used fio to compare the performance of sequential writes to normal zones and the ZRWA on ZNS devices. On ZN540, the performance was nearly identical. However, on PM1731a, writes to the ZRWA were found to be 26.6 times faster. This suggests that the ZRWA area on the PM1731a device is configured with battery- backed DRAM.
 
-![](images/5301cd102d9e7b6e60a7fa0f4648274fdf9a15695aef2b0561d51503ea16fa7b.jpg)  
+![](5301cd102d9e7b6e60a7fa0f4648274fdf9a15695aef2b0561d51503ea16fa7b.jpg)  
 Figure 11. Throughput of f1o on PM1731a with 15 opened zones.
 
 We applied ZRAID on the PM1731a device to assess the impact of eliminating unnecessary flash writes caused by outdated partial parity. We aggregated four small zones to overcome the hardware limitations of PM1731a (see §4.4). Sub- I/Os are internally interleaved across aggregated zones, with each zone using an aggregation chunk size of 64KB, which matches the ZRWA size. Unfortunately, we have only one PM1731a device, so five equal- sized dm- linear partitions are used for emulating five distinct devices. Each partition contains 8000 consecutive zones, and the addresses of ZRWA explicit commands for each partition are converted and sent to the original PM1731a device, while I/O requests are forwarded to the dm layer. For a fair comparison,  $\mathrm{RAIZN + }$  was also configured to utilize the aggregated zones.
