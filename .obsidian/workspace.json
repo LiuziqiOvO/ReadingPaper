@@ -1,0 +1,257 @@
+{
+  "main": {
+    "id": "41c6842708f569a2",
+    "type": "split",
+    "children": [
+      {
+        "id": "e492f9d7ba5f5a7a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8eed8efb433cad7b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "0_diary/2025-07-08.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "2025-07-08"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2aaa95e4ba871b0c",
+    "type": "split",
+    "children": [
+      {
+        "id": "f24f9ec87bba4ab9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7e44933d176c9937",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTime",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "4d0f3e7accb24a0c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          },
+          {
+            "id": "49d15414e5ece695",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Cache",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "byModifiedTime"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 291.5
+  },
+  "right": {
+    "id": "548aa65e8055b9ba",
+    "type": "split",
+    "children": [
+      {
+        "id": "6cc80ae0a03ab353",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2b60105212d288f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "SPDK.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "SPDK 的反向链接列表"
+            }
+          },
+          {
+            "id": "bf5d3c6ef699b34c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "SPDK.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "SPDK 的出链列表"
+            }
+          },
+          {
+            "id": "63de177b3322ece0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "777938b2313769c8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": true,
+                "showSearch": true,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          },
+          {
+            "id": "ea4b24d0e0978ca1",
+            "type": "leaf",
+            "state": {
+              "type": "chinese-calendar-view",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "日历"
+            }
+          },
+          {
+            "id": "a1331d0235e751d8",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 324.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "quickadd:QuickAdd": false,
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "obsidian-git:Open Git source control": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "command-palette:打开命令面板": false,
+      "canvas:新建白板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "7e44933d176c9937",
+  "lastOpenFiles": [
+    "0_diary/2025-07-08.md",
+    "1_cold/组原.md",
+    "4_plot/Show2Know/4 HeatMap Plot/HeatMap.md",
+    "3_Lab/决策树准入：Efficient SSD Caching by Avoiding Unnecessary Writes using Machine Learning.md",
+    "1_cold/py.md",
+    "环境配置&&工具/Docker.md",
+    "KV Store.md",
+    "Excalidraw/rd流程.md",
+    "Excalidraw/OCF部分命中p1.md",
+    "Excalidraw/函数调用关系p1.md",
+    "image/algo.assets/Drawing 2025-06-06 16.39.49.excalidraw.md",
+    "0_diary/2025-07-07.md",
+    "Ubuntu.md",
+    "conflict-files-obsidian-git.md",
+    "Paper/Paper_in_md/FDPvirt.md",
+    "TODO/Vscode插件.md",
+    "TODO/三角洲价格监控.md",
+    "TODO/MyBlog换主题.md",
+    "TODO/happy-llm.md",
+    "TODO/多臂老虎机.md",
+    "TODO/MediaCrawler 国内媒体通用爬虫.md",
+    "TODO/调研缓存相关研究点.md",
+    "TODO/Milvus.md",
+    "环境配置&&工具/重新装机.md",
+    "Paper/Paper_in_md/0_Data Calculator/0_Data Calculator.md",
+    "Paper/【FDP】FDPVirt.pdf",
+    "Paper/未命名",
+    "Paper/【强化学习】【内存换入换出】ArtMem.pdf",
+    "Paper/【ZNS】Lifetime-Leveling LSM-Tree Compaction for ZNS SSD.pdf",
+    "Paper/FDPVirt.pdf",
+    "Paper/【LLM】MANBA.pdf",
+    "Paper/【Embedding】【SSD】Petps_Li.pdf",
+    "Paper/【CXL】【SSD】Breaking Down MemoryWalls Adaptive Memory Managementin LSM-based Storage Systems.pdf",
+    "Paper/【Cache】OmniCache Collaborative Caching.pdf",
+    "Paper/【Cache】Ditto(远端内存池Cache系统).pdf",
+    "3_Lab/ZNS Cache调研报告.md",
+    "image/Pasted image 20250704122950.png",
+    "draw.io/cacheDataStructure.drawio.svg",
+    "draw.io/Untitled Diagram.svg",
+    "image/Pasted image 20250630155532.png",
+    "image/Pasted image 20250630155505.png",
+    "6_AICache/SPDK.ocf/Untitled Diagram.svg",
+    "Ocf Cache Structure.svg",
+    "image/2f5a58c2765e1805a828a4c4d82e1cf.png",
+    "6_AICache/Doc-libCacheSim/Untitled Diagram.svg",
+    "Excalidraw/OCF部分命中p1.svg",
+    "未命名.canvas",
+    "未命名 1.canvas"
+  ]
+}

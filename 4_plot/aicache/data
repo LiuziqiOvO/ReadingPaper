@@ -1,0 +1,148 @@
+Trace	Cache Size	KIOPS	BW(MiB/s)	Timestamp	SPDK-branch	libdas-version	Hit Ratio(%)	Clean Ratio(%)	Cache Read(GiB)	Cache Write(GiB)	Core Read(GiB)	Latency(us)
+mds_1.txt	4300	4.25	266	0331_1823	baseline	baseline + dasbind(原)						
+proj_0.txt	91	12.7	225	0331_1829	baseline	baseline + dasbind(原)						
+proj_3.txt	270	14.8	188	0331_1830	baseline	baseline + dasbind(原)						
+prxy_0.txt	63	40.8	339	0331_1833	baseline	baseline + dasbind(原)						
+rsrch_2.txt	68	10.9	85.4	0331_1833	baseline	baseline + dasbind(原)						
+src2_1.txt	981	4.1	242	0331_1842	baseline	baseline + dasbind(原)						
+src2_2.txt	1040	4.22	298	0331_1845	baseline	baseline + dasbind(原)						
+stg_1.txt	4075	3.91	228	0331_1847	baseline	baseline + dasbind(原)						
+ts_0.txt	51	22.9	309	0331_1853	baseline	baseline + dasbind(原)						
+usr_0.txt	109	14.3	575	0331_1854	baseline	baseline + dasbind(原)						
+web_0.txt	369	5.28	176	0331_1855	baseline	baseline + dasbind(原)						
+prn_0.txt	193	8.11	184	0331_1858	baseline	baseline + dasbind(原)						
+web_1.txt	188	4.38	215	0331_1858	baseline	baseline + dasbind(原)						
+src1_2.txt	81	12.9	246	0331_2327	baseline	baseline + dasbind(原)						
+ali-dev-5.txt	91	7.54	234	0331_2346	baseline	baseline + dasbind(原)						
+ali-dev-3-part-02	683	10.8	46.5	0401_0023	baseline	baseline + dasbind(原)						
+ali-dev-3-part-03	683	10.6	52.6	0401_0025	baseline	baseline + dasbind(原)						
+ali-dev-3-part-04	683	9.4	144	0401_0027	baseline	baseline + dasbind(原)						
+ali-dev-3-part-05	683	11.1	45.5	0401_0029	baseline	baseline + dasbind(原)						
+ali-dev-3-part-06	683	11.6	57.4	0401_0031	baseline	baseline + dasbind(原)						
+ali-dev-3-part-07	683	8.93	131	0401_0033	baseline	baseline + dasbind(原)						
+ali-dev-3-part-08	683	11.1	45.4	0401_0035	baseline	baseline + dasbind(原)						
+ali-dev-3-part-09	683	10.9	62.2	0401_0037	baseline	baseline + dasbind(原)						
+ali-dev-3-part-10	683	9.38	133	0401_0039	baseline	baseline + dasbind(原)						
+ali-dev-3-part-02	683	11.6	49.9	0401_2208	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-03	683	10.6	52.6	0401_2209	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-04	683	9.78	150	0401_2211	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-05	683	11.7	47.8	0401_2213	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-06	683	11	54.6	0401_2215	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-07	683	9.31	137	0401_2217	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-08	683	11.9	48.5	0401_2219	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-09	683	10.7	60.9	0401_2221	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-10	683	9.98	141	0401_2223	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+mds_1.txt	4300	4.93	309	0401_2338	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+proj_0.txt	91	13.6	242	0401_2344	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+proj_3.txt	270	15	190	0401_2345	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+prxy_0.txt	63	44.4	369	0401_2348	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+rsrch_2.txt	68	9.94	77.7	0401_2348	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+src1_2.txt	81	16.7	318	0401_2349	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+src2_1.txt	981	4.51	266	0401_2350	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+src2_2.txt	1040	4.14	292	0401_2352	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+stg_1.txt	4075	4.18	244	0401_2354	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ts_0.txt	51	26	350	0402_0000	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+usr_0.txt	109	17.1	687	0402_0001	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+web_0.txt	369	6.33	187	0402_0002	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+web_1.txt	188	5.07	249	0402_0003	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+prn_0.txt	193	9.33	211	0402_0004	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-5.txt	91	9.38	291	0402_0005	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-3-part-01	683	12.2	118	0402_0006	main	das-bind(1k 5k 10k 4k >>4 >>2)						
+ali-dev-5.txt	91	9.64	299	0328_1939	main	das-bind(1k 5k 10k 4k >>6 >>4)						
+ali-dev-3-part-01	683	12.2	118	0404_0027	main	das-bind(1k 5k 10k 4k >>6 >>4)	10.41	100	53.19	115.66	232.2	10471.89
+ali-dev-3-part-02	683	11.7	50.3	0404_0029	main	das-bind(1k 5k 10k 4k >>6 >>4)	8.4	100	53.5	127.64	247.88	10881.34
+ali-dev-3-part-03	683	11.3	56.1	0404_0031	main	das-bind(1k 5k 10k 4k >>6 >>4)	7.64	100	53.8	140.84	265.51	11241.1
+ali-dev-3-part-04	683	10.1	155	0404_0032	main	das-bind(1k 5k 10k 4k >>6 >>4)	6.18	100	55.58	152.81	290.32	12867.71
+ali-dev-3-part-05	683	11.9	48.5	0404_0035	main	das-bind(1k 5k 10k 4k >>6 >>4)	10.82	100	55.97	164.26	305.21	10677.54
+ali-dev-3-part-06	683	11.7	57.9	0404_0036	main	das-bind(1k 5k 10k 4k >>6 >>4)	8.26	100	56.3	175.7	321.04	10858.32
+ali-dev-3-part-07	683	9.53	140	0404_0038	main	das-bind(1k 5k 10k 4k >>6 >>4)	6.83	100	56.79	190.25	349.24	13662.39
+ali-dev-3-part-08	683	12.7	51.8	0404_0040	main	das-bind(1k 5k 10k 4k >>6 >>4)	10	100	57.15	200.63	363.09	10015.45
+ali-dev-3-part-09	683	10.9	62	0404_0042	main	das-bind(1k 5k 10k 4k >>6 >>4)	8.86	100	57.53	212.37	379.86	11732.7
+ali-dev-3-part-10	683	10	141	0404_0044	main	das-bind(1k 5k 10k 4k >>6 >>4)	7.76	100	58.03	225.18	405.76	13026
+ali-dev-5.txt	91	9.59	297	0404_0026	main	das-bind(1k 5k 10k 4k >>6 >>4)	16.95	100	48.3	105.76	218.05	14356.49
+mds_1.txt	4300	4.95	310	0403_2340	main	das-bind(1k 5k 10k 4k >>6 >>4)	0	100	0	0.31	0	71744.33
+prn_0.txt	193	10.1	228	0404_0025	main	das-bind(1k 5k 10k 4k >>6 >>4)	23.65	100	48.24	105.46	217.43	12648.96
+proj_0.txt	91	14.2	251	0403_1814	main	das-bind(1k 5k 10k 4k >>6 >>4)	29.99	100	45.49	50.81	101.3	8952.59
+proj_3.txt	270	15.7	200	0404_0000	main	das-bind(1k 5k 10k 4k >>6 >>4)	13.1	100	5.13	13.64	26.97	8095.5
+prxy_0.txt	63	46.3	385	0404_0003	main	das-bind(1k 5k 10k 4k >>6 >>4)	55.53	100	6.2	14.59	29.08	2606.17
+rsrch_2.txt	68	9.9	77.3	0404_0003	main	das-bind(1k 5k 10k 4k >>6 >>4)	11	100	6.32	14.95	30.18	12918.31
+src1_2.txt	81	16.5	313	0404_0004	main	das-bind(1k 5k 10k 4k >>6 >>4)	34.16	100	7.62	19.87	39.15	7657.63
+src2_1.txt	981	4.42	260	0403_1827	main	das-bind(1k 5k 10k 4k >>6 >>4)	19.7	100	7.28	24.95	53.55	28835.93
+src2_2.txt	1040	4.08	288	0404_0013	main	das-bind(1k 5k 10k 4k >>6 >>4)	22.68	100	10.89	13.56	24.95	32967.86
+stg_1.txt	4075	4.38	255	0404_0015	main	das-bind(1k 5k 10k 4k >>6 >>4)	19.73	100	27.56	74.8	149.01	29024.49
+ts_0.txt	51	23.1	311	0404_0021	main	das-bind(1k 5k 10k 4k >>6 >>4)	23.12	100	28.08	76.37	152.67	5496.19
+usr_0.txt	109	17.1	687	0404_0021	main	das-bind(1k 5k 10k 4k >>6 >>4)	34.27	100	40.42	80.66	176.8	7464.97
+web_0.txt	369	6.62	221	0404_0022	main	das-bind(1k 5k 10k 4k >>6 >>4)	27.4	100	44.36	94.99	198.4	19140.2
+web_1.txt	188	6.07	298	0404_0024	main	das-bind(1k 5k 10k 4k >>6 >>4)	52.4	100	46.66	97.28	202.37	21007.99
+ali-dev-3-part-01	683	12.3	119	0403_1844	main	das-bind(1k 5k 10k 4k >>7 >>5)	10.65	100	56.53	130.36	278.96	10446.94
+ali-dev-3-part-02	683	12	51.5	0403_1846	main	das-bind(1k 5k 10k 4k >>7 >>5)	9.89	100	56.91	141.57	293.81	10630.72
+ali-dev-3-part-03	683	11.2	55.8	0403_1847	main	das-bind(1k 5k 10k 4k >>7 >>5)	8.36	100	57.23	154.44	311.08	11291
+ali-dev-3-part-04	683	9.8	150	0403_1849	main	das-bind(1k 5k 10k 4k >>7 >>5)	6.9	100	59.02	165.91	335.38	13275.79
+ali-dev-3-part-05	683	11.9	48.4	0403_1851	main	das-bind(1k 5k 10k 4k >>7 >>5)	10.84	100	59.41	177.83	350.75	10693.12
+ali-dev-3-part-06	683	11.6	57.5	0403_1853	main	das-bind(1k 5k 10k 4k >>7 >>5)	8.25	100	59.73	189.02	366.33	10929.63
+ali-dev-3-part-07	683	9.36	138	0403_1855	main	das-bind(1k 5k 10k 4k >>7 >>5)	6.63	100	60.21	203.29	394.25	13901.61
+ali-dev-3-part-08	683	12.5	51.1	0403_1857	main	das-bind(1k 5k 10k 4k >>7 >>5)	9.38	100	60.55	213.93	408.39	10143.85
+ali-dev-3-part-09	683	11.4	65	0403_1859	main	das-bind(1k 5k 10k 4k >>7 >>5)	9.6	100	60.93	225.79	425.28	11171.14
+ali-dev-3-part-10	683	10.2	144	0403_1901	main	das-bind(1k 5k 10k 4k >>7 >>5)	7.67	100	61.44	237.33	449.91	12818.14
+ali-dev-5.txt	91	8.17	253	0403_1843	main	das-bind(1k 5k 10k 4k >>7 >>5)	13.66	100	51.63	120.99	265.34	17008.63
+mds_1.txt	4300	5	313	0403_1808	main	das-bind(1k 5k 10k 4k >>7 >>5)	44.59	100	44.05	46.86	92.89	25494.24
+prn_0.txt	193	10.1	230	0403_1842	main	das-bind(1k 5k 10k 4k >>7 >>5)	23.15	100	51.58	120.58	264.62	12554.34
+proj_0.txt	91	14.2	251	0403_1814	main	das-bind(1k 5k 10k 4k >>7 >>5)	29.99	100	45.49	50.81	101.3	8952.59
+proj_3.txt	270	15.5	197	0403_1815	main	das-bind(1k 5k 10k 4k >>7 >>5)	13.17	100	50.79	63.9	127.98	8213.63
+prxy_0.txt	63	46.2	384	0403_1818	main	das-bind(1k 5k 10k 4k >>7 >>5)	55.58	100	51.86	64.84	130.07	2554.78
+rsrch_2.txt	68	10.1	78.9	0403_1818	main	das-bind(1k 5k 10k 4k >>7 >>5)	14.91	100	52.01	65.23	131.16	12670.99
+src2_1.txt	981	4.42	260	0403_1827	main	das-bind(1k 5k 10k 4k >>7 >>5)	19.7	100	7.28	24.95	53.55	28835.93
+src2_2.txt	1040	4.02	284	0403_1830	main	das-bind(1k 5k 10k 4k >>7 >>5)	19.57	100	16.51	36.94	78.32	33915.38
+stg_1.txt	4075	4.41	257	0403_1832	main	das-bind(1k 5k 10k 4k >>7 >>5)	18.18	100	31.89	92.85	198.34	28812.37
+ts_0.txt	51	22.6	304	0403_1838	main	das-bind(1k 5k 10k 4k >>7 >>5)	22.99	100	32.4	94.45	202.03	5614.56
+usr_0.txt	109	19.8	794	0403_1838	main	das-bind(1k 5k 10k 4k >>7 >>5)	34.21	100	44.73	98.53	225.88	6445.15
+web_0.txt	369	6.71	224	0403_1839	main	das-bind(1k 5k 10k 4k >>7 >>5)	26.58	100	48.47	111.67	246.39	18885.59
+web_1.txt	188	6.09	298	0403_1841	main	das-bind(1k 5k 10k 4k >>7 >>5)	40.97	100	50.06	113.43	250.55	20964.62
+ali-dev-3-part-01	683	12.6	122	0407_1945	main	das-bind(1k 5k 10k 4k >>8 >>6)	9.49	100	42.42	89.76	215.39	10182.11
+ali-dev-3-part-02	683	12.6	54.2	0407_1946	main	das-bind(1k 5k 10k 4k >>8 >>6)	9.27	100	42.78	100.2	229.49	10112.97
+ali-dev-3-part-03	683	11.2	55.8	0407_1948	main	das-bind(1k 5k 10k 4k >>8 >>6)	7.17	100	43.06	112.92	246.65	11298.98
+ali-dev-3-part-04	683	10.7	164	0407_1950	main	das-bind(1k 5k 10k 4k >>8 >>6)	4.77	100	43.61	123.93	271.82	12206.65
+ali-dev-3-part-05	683	12.5	50.8	0407_1952	main	das-bind(1k 5k 10k 4k >>8 >>6)	9.85	100	43.98	135.06	286.42	10200.36
+ali-dev-3-part-06	683	11.3	56	0407_1954	main	das-bind(1k 5k 10k 4k >>8 >>6)	6.51	100	44.23	146.54	302.35	11244.04
+ali-dev-3-part-07	683	10.3	151	0407_1956	main	das-bind(1k 5k 10k 4k >>8 >>6)	7.21	100	44.73	159.45	328.89	12711.95
+ali-dev-3-part-08	683	13.1	53.6	0407_1958	main	das-bind(1k 5k 10k 4k >>8 >>6)	9.23	100	45.07	169.24	342.19	9684.23
+ali-dev-3-part-09	683	11.5	65.6	0407_1959	main	das-bind(1k 5k 10k 4k >>8 >>6)	8.21	100	45.42	181.12	359.12	11066.14
+ali-dev-3-part-10	683	10.7	152	0407_2001	main	das-bind(1k 5k 10k 4k >>8 >>6)	8.7	100	45.94	192.03	383.11	12179.35
+ali-dev-5.txt	91	10.4	321	0407_1944	main	das-bind(1k 5k 10k 4k >>8 >>6)	13.93	100	37.56	80.29	201.62	13377.29
+mds_1.txt	4300	4.82	302	0407_1912	main	das-bind(1k 5k 10k 4k >>8 >>6)	28.48	100	27.61	30.67	93.23	26467.51
+prn_0.txt	193	11.4	257	0407_1943	main	das-bind(1k 5k 10k 4k >>8 >>6)	23.34	100	37.51	79.89	200.92	11231.12
+proj_0.txt	91	16.5	293	0407_1917	main	das-bind(1k 5k 10k 4k >>8 >>6)	30.15	100	29.06	34.36	101.44	7643.31
+proj_3.txt	270	15.2	192	0407_1918	main	das-bind(1k 5k 10k 4k >>8 >>6)	12.6	100	33.34	46.96	127.94	8399.31
+prxy_0.txt	63	47.7	397	0407_1921	main	das-bind(1k 5k 10k 4k >>8 >>6)	55.47	100	34.4	47.9	130.03	2439.09
+rsrch_2.txt	68	10.7	83.4	0407_1922	main	das-bind(1k 5k 10k 4k >>8 >>6)	9.2	100	34.5	48.28	131.16	11992.27
+src1_2.txt	81	15	286	0407_1922	main	das-bind(1k 5k 10k 4k >>8 >>6)	34.28	100	35.81	53.04	139.98	8395.64
+src2_2.txt	1040	4.11	290	0407_1931	main	das-bind(1k 5k 10k 4k >>8 >>6)	13.72	100	5.72	9.04	24.34	33701.88
+stg_1.txt	4075	4.58	267	0407_1933	main	das-bind(1k 5k 10k 4k >>8 >>6)	15.28	100	18.42	54.64	136.72	27763.13
+ts_0.txt	51	26.4	356	0407_1939	main	das-bind(1k 5k 10k 4k >>8 >>6)	22.94	100	18.94	56.23	140.41	4809.14
+usr_0.txt	109	20.1	805	0407_1939	main	das-bind(1k 5k 10k 4k >>8 >>6)	34.18	100	31.25	60.06	164.08	6373.28
+web_0.txt	369	7.61	254	0407_1941	main	das-bind(1k 5k 10k 4k >>8 >>6)	24.53	100	34.31	71.64	183.46	16659.56
+web_1.txt	188	6.14	301	0407_1942	main	das-bind(1k 5k 10k 4k >>8 >>6)	43.36	100	36.03	73.45	187.57	20808.18
+ali-dev-3-part-01	683	12.5	121	0407_2253	main	das-bind(1k 5k 10k 4k >>5 >>3)	12.97	100	57.14	124.04	237.45	10287.22
+ali-dev-3-part-02	683	12.2	52.7	0407_2255	main	das-bind(1k 5k 10k 4k >>5 >>3)	8.5	100	57.47	135.91	253.01	10387.74
+ali-dev-3-part-03	683	10.9	54	0407_2257	main	das-bind(1k 5k 10k 4k >>5 >>3)	8.78	100	57.81	148.22	269.69	11675.01
+ali-dev-3-part-04	683	10.5	161	0407_2259	main	das-bind(1k 5k 10k 4k >>5 >>3)	6.34	100	59.61	161.06	295.36	12382.03
+ali-dev-3-part-05	683	12.5	51	0407_2301	main	das-bind(1k 5k 10k 4k >>5 >>3)	11.26	100	60.02	171.8	309.53	10160.55
+ali-dev-3-part-06	683	11.4	56.4	0407_2303	main	das-bind(1k 5k 10k 4k >>5 >>3)	9.38	100	60.38	182.63	324.7	11153.09
+ali-dev-3-part-07	683	10.1	149	0407_2304	main	das-bind(1k 5k 10k 4k >>5 >>3)	7.3	100	60.89	196.3	351.99	12897.97
+ali-dev-3-part-08	683	12.4	50.4	0407_2307	main	das-bind(1k 5k 10k 4k >>5 >>3)	11.5	100	61.3	205.98	365.1	10296.12
+ali-dev-3-part-09	683	11.4	64.8	0407_2308	main	das-bind(1k 5k 10k 4k >>5 >>3)	6.9	100	61.6	218.16	382.4	11201.65
+ali-dev-3-part-10	683	10.6	149	0407_2310	main	das-bind(1k 5k 10k 4k >>5 >>3)	8.29	100	62.12	229.39	406.68	12358.03
+ali-dev-5.txt	91	10.2	314	0407_2253	main	das-bind(1k 5k 10k 4k >>5 >>3)	16.47	100	52.14	115	224.25	13684.26
+mds_1.txt	4300	5.15	323	0407_2220	main	das-bind(1k 5k 10k 4k >>5 >>3)	60.68	100	61.37	64.13	92.99	24711.85
+prn_0.txt	193	10.9	246	0407_2252	main	das-bind(1k 5k 10k 4k >>5 >>3)	23.31	100	52.09	114.58	223.53	11732.42
+proj_0.txt	91	15.8	280	0407_2226	main	das-bind(1k 5k 10k 4k >>5 >>3)	29.39	100	62.77	68.21	101.56	8014.52
+proj_3.txt	270	15	190	0407_2227	main	das-bind(1k 5k 10k 4k >>5 >>3)	17.9	100	69.88	84.52	130.63	8501.33
+prxy_0.txt	63	48.5	403	0407_2229	main	das-bind(1k 5k 10k 4k >>5 >>3)	55.52	100	70.94	85.46	132.72	2461.33
+rsrch_2.txt	68	10.4	81.5	0407_2230	main	das-bind(1k 5k 10k 4k >>5 >>3)	9.87	100	71.05	85.84	133.85	12261.12
+src1_2.txt	81	14.3	271	0407_2231	main	das-bind(1k 5k 10k 4k >>5 >>3)	34.23	100	72.41	91.27	143.32	8851.71
+src2_2.txt	1040	4.2	296	0407_2240	main	das-bind(1k 5k 10k 4k >>5 >>3)	27.18	100	13.43	15.89	25.23	31859.79
+stg_1.txt	4075	4.42	258	0407_2242	main	das-bind(1k 5k 10k 4k >>5 >>3)	20.38	100	30.67	79.71	151.31	28752.13
+ts_0.txt	51	25.6	344	0407_2247	main	das-bind(1k 5k 10k 4k >>5 >>3)	22.95	100	31.18	81.31	155	4941.79
+usr_0.txt	109	19.5	783	0407_2248	main	das-bind(1k 5k 10k 4k >>5 >>3)	34.23	100	43.52	85.4	178.95	6540.64
+web_0.txt	369	7.33	244	0407_2249	main	das-bind(1k 5k 10k 4k >>5 >>3)	28.34	100	48	102.71	203.42	17237.94
+web_1.txt	188	5.53	271	0407_2251	main	das-bind(1k 5k 10k 4k >>5 >>3)	57.1	100	50.5	105.28	207.5	23071.06

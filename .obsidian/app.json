@@ -1,0 +1,12 @@
+{
+  "strictLineBreaks": true,
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "readableLineLength": false,
+  "showLineNumber": false,
+  "rightToLeft": false,
+  "vimMode": false,
+  "newFileLocation": "current",
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "image"
+}
