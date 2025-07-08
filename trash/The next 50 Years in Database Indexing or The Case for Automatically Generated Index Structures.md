@@ -56,7 +56,7 @@
 
 ## 通用逻辑索引框架
 
-![image-20220729022543924](The%20next%2050%20Years%20in%20Database%20Indexing%20or%20The%20Case%20for%20Automatically%20Generated%20Index%20Structures.assets/image-20220729022543924.png)
+![image-20220729022543924](image-20220729022543924.png)
 
 教科书总是把物理实现(red)，和逻辑功能(black)同时介绍。这违反了索引结构的物理数据的独立性。
 
@@ -182,7 +182,7 @@ make a physical decision：
 4. comp：压缩情况
 5. hybridDL：也可以是混合式的data layout
 
-![image-20220729044422769](The%20next%2050%20Years%20in%20Database%20Indexing%20or%20The%20Case%20for%20Automatically%20Generated%20Index%20Structures.assets/image-20220729044422769.png)
+![image-20220729044422769](image-20220729044422769.png)
 
 
 
@@ -246,13 +246,13 @@ PD（m，N）：怎样物理实现这个节点的突变。
 
 4. 将一个子节点水平拆分为k个节点
 
-   ![image-20220729044800957](The%20next%2050%20Years%20in%20Database%20Indexing%20or%20The%20Case%20for%20Automatically%20Generated%20Index%20Structures.assets/image-20220729044800957.png)
+   ![image-20220729044800957](image-20220729044800957.png)
 
 5. 垂直合并同级节点
 
 6. 将子节点垂直拆分为k个节点
 
-   ![image-20220729044812323](The%20next%2050%20Years%20in%20Database%20Indexing%20or%20The%20Case%20for%20Automatically%20Generated%20Index%20Structures.assets/image-20220729044812323.png)
+   ![image-20220729044812323](image-20220729044812323.png)
 
 
 
@@ -418,7 +418,7 @@ GENE可以迅速达到baseline，因为通过突变可以很容易在一开始�
 
 
 
-![image-20220728180000202](The%20next%2050%20Years%20in%20Database%20Indexing%20or%20The%20Case%20for%20Automatically%20Generated%20Index%20Structures.assets/image-20220728180000202.png)
+![image-20220728180000202](image-20220728180000202.png)
 
 这证明了，在一些用例下，自动生成的索引很有竞争力，甚至可能性能更优。
 
