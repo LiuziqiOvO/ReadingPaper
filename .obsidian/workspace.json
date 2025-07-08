@@ -11,24 +11,10 @@
             "id": "8eed8efb433cad7b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "0_diary/2025-07-08.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2025-07-08"
+              "title": "新标签页"
             }
           }
         ]
@@ -166,8 +152,8 @@
             "state": {
               "type": "chinese-calendar-view",
               "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "日历"
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           },
           {
@@ -189,17 +175,16 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "quickadd:QuickAdd": false,
-      "obsidian-advanced-slides:Show Slide Preview": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "obsidian-git:Open Git source control": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "command-palette:打开命令面板": false,
       "canvas:新建白板": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "obsidian-git:Open Git source control": false,
+      "quickadd:QuickAdd": false,
       "omnisearch:Omnisearch": false
     }
   },
