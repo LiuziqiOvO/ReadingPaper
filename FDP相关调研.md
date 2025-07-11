@@ -1,5 +1,5 @@
 # 平台——FDPvirt
-[[Paper_in_CN/FDPVirt|FDPVirt]]   26th CLUSTER 2024: Kobe, Japan - Workshops
+![[Paper_in_CN/FDPVirt|FDPVirt]]   26th CLUSTER 2024: Kobe, Japan - Workshops
 
 基于NVMeVirt(这个我做ZNS用过，开源），新增了对FDP的模拟。
 FDPvirt也开源，但是删库了
