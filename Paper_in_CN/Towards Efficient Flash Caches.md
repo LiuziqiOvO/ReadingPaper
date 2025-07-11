@@ -208,7 +208,9 @@ CacheLib 是各种缓存服务的流行构建块，具有多样化的用例。�
 
 4. **允许不断发展的数据放置技术的硬件可扩展性**：由于 FDP 规范是新的，预计会随着时间的推移而发展，其使用应该在 CacheLib 架构中本地化，以最小化随着硬件技术的发展对代码库的更改。
 
-![CacheLib I/O路径](d:\ReadingPaper\Paper_in_md\Towards Efficient Flash Caches with Emerging NVMe.pdf-bde1b412-5210-41ef-8477-aaf2a7d18544\images\835269838dc4dd5502ee2ed69e994e353e82a484371cd37d4d3ce73a51ae4962.jpg)
+![[835269838dc4dd5502ee2ed69e994e353e82a484371cd37d4d3ce73a51ae4962.jpg]]
+
+
 
 图 4. CacheLib I/O 路径。1a 表示放置句柄分配器，负责分配消耗 FDP 的放置句柄。
 
