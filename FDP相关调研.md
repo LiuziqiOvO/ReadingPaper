@@ -14,7 +14,7 @@ FDPvirt也开源，但是删库了
 2. 好处是这个和ZNS有一定交叉，可以用到以前调研的文章。或者和ZNS做对比实验。
 
 
-
+> 下面记录了实现FDP需要遵循的标准规范
 --- 
 # NVMe Flexible Data Placement (FDP) 标准化接口
 
