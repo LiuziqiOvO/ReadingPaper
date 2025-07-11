@@ -7,7 +7,7 @@ FDPvirt也开源，但是删库了
 # 项目&论文
 1. FDPFS is a File System in Userspace (FUSE) - based file system that expose FDP SSD's chariteristics to allow ease of use data placement on FDP-enabled SSDs. 暴露FDP SSD的文件系统 [github](https://github.com/pingxiang-chen/fuse-fdpfs.git)
 2. 支持FDP SSD的CacheLib（已完成merge） https://github.com/facebook/CacheLib/pull/277.  
-3. Towards Efficient Flash Caches with Emerging NVMe ==Flexible== ==Data== ==Placement== SSDs. [EuroSys 2025](https://dl.acm.org/doi/10.1145/3689031.3696091)
+3. Towards Efficient Flash Caches with Emerging NVMe Flexibl Data Placement SSDs. [EuroSys 2025](https://dl.acm.org/doi/10.1145/3689031.3696091)
 
 # 问题
 1. 手动复现FDPVirt，模拟器的说服力
