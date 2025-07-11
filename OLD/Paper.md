@@ -9,7 +9,6 @@ The next 50 Years in Database Indexing or: The Case for Automatically Generated 
 预测查找？ prediction
 
 
-
 ## Abstract
 
 传统索引结构的三种维度：
