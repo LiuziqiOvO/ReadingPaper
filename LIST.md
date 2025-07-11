@@ -1,2 +1,5 @@
 - [ ] FDPvirt阅读和复现
-- [ ] 
+- [ ] Using Lock-Free Design for Throughput-Optimized Cache Eviction https://dl.acm.org/doi/abs/10.1145/3727136
+- [ ] ZNS Cachelib https://arxiv.org/abs/2410.11260
+- [ ] Reviving In-Storage Hardware Compression on ZNS SSDs through Host-SSD Collaboration https://ieeexplore.ieee.org/abstract/document/10946825/
+- [ ] ZipCache 一款内置透明压缩功能的 DRAM/SSD 缓存 CCF None https://dl.acm.org/doi/abs/10.1145/3695794.3695805

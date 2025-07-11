@@ -113,11 +113,11 @@ We quantify backing store load via disk- head time (DT), which is a metric that 
 Definition Disk- head Time (DT) is the cost of serving requests to the backend. For a single IO that fetches  \(n\)  bytes, with  \(t_{\text{seek}}\)  the time for one disk seek and  \(t_{\text{read}}\)  the time to read one additional byte:  \(DT_{i} = t_{\text{seek}} + n \cdot t_{\text{read}}\)
 
 Definition Backend load (Utilization) of a time window is the total DT needed to serve misses, normalized by provisioned DT (1 disk- sec per disk per sec):  \(Util_{DT} = \frac{\sum_{i} DT_{i}}{DT_{\text{Provisioned}}}\) , where
-
+$$
 \[
 \sum_{i}DT_{i} = Fetches_{TOs}\cdot t_{seek} + Fetches_{Bytes}\cdot t_{read} \tag{1}
 \]
-
+$$
 DT accurately models throughput constraints of bulk storage systems. DT models both the IOPS and bandwidth limitations of the backing HDDs. (This concept can be extended to other systems with IO setup and transfer costs, such as CDNs.) In our caching setup, we fetch the smallest range covering all cache misses, and normalize DT by HDDs per node to get backend load.
 
 In Fig 3, we validate DT that can be calculated using only two production counters, IO misses and bytes fetched, against system- reported disk utilization on a Meta production cluster in Feb 2023. The peaks line up within  \(1\%\) , which was surprisingly accurate given the simplicity of this formula ( \(t_{\text{seek}}\)  and  \(t_{\text{read}}\)  are constants) and the vagaries of production systems (included in the system disk utilization measurements).
