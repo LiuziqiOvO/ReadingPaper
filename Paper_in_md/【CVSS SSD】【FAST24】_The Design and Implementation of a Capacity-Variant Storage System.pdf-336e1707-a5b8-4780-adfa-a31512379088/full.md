@@ -24,7 +24,7 @@ Fail- slow symptoms where components continue to function but experience degrade
 
 Figure 1 demonstrates a steady performance degradation for a real enterprise- grade SSD. We age the SSD through random writes by writing about 100 terabytes of data each day, and during morning hours when no other jobs are running, we measure the throughput of the read- only I/O, both sequential and random reads. As shown in Figure 1, the performance of the SSD degrades as the SSD wears out, at a rate of  $4.2\%$  and $4.3\%$  of the initial performance for each petabyte written, for random reads and sequential reads, respectively. It is unlikely that the throughput drop is due to garbage collection as (1) this was measured daily over months, and (2) only reads are issued during measurement. By the end, writing a total of 9 petabytes of data to the SSD decreased the throughput by  $37\%$  for random reads and  $38\%$  for sequential reads.
 
-![](images/d36f3878817f48a5c2bb074927e6c9d7c08381828ab8d8102c5add2a938377c7.jpg)  
+![](d36f3878817f48a5c2bb074927e6c9d7c08381828ab8d8102c5add2a938377c7.jpg)  
 Figure 1: SSD performance degradation due to wear-out. The dashed line represents the linear regression of the daily data points. The throughput decreases by  $37\%$  for random reads and  $38\%$  for sequential reads after 9 petabytes of data writes.
 
 To address this problem, we start with two key observations. First, flash memory, when it eventually fails, does so in a fail- partial manner. More specifically, an SSD's failure unit is an individual flash memory block [3, 44, 50], and the SSD- internal wear leveling algorithms are artifacts to emulate a hard disk drive- like fail- stop behavior [25, 31]. Second, an SSD has no other choice but to trade performance as flash memory's reliability deteriorates, because a storage device's capacity remains fixed and unchanged from its newly installed state until its retirement. SSD's internal data re- reads [4, 5, 42, 53] or preventive re- writes [6, 18] are such choices that lead to fail- slow symptoms [30, 31].
@@ -45,7 +45,7 @@ We first show the increasing trend of flash memory errors in SSDs and describe h
 
 Flash memory errors and wear- out. The rapid increase in NAND flash memory density has come at the cost of reduced reliability and exacerbated fail- slow symptoms. Figure 2 shows the reported flash flaw bit error rates (RBERs) in recent publications [3,4,14,30,42,55,57,65], and this trend indicates that flash memory errors are already a common case.
 
-![](images/ce06f591cc82b0450c4e7b9282c5e1eaa0e199a89e6f48b7bbb447c9b0d7fad3.jpg)  
+![](ce06f591cc82b0450c4e7b9282c5e1eaa0e199a89e6f48b7bbb447c9b0d7fad3.jpg)  
 Figure 2: Flash memory error rates have increased significantly over the past years.
 
 One of the significant flash memory error mechanisms is wear- out, where flash cells are gradually damaged with repeated programs and erases [44,50]. Because wear- outs are irreversible, once a flash block reaches its endurance limit or returns an operation failure, it is marked as bad by the SSD- internal flash translation layer (FTL) and taken out of circulation. To replace these unusable blocks, SSDs are often over- provisioned with more physical capacity than the logically exported capacity.
@@ -58,7 +58,7 @@ However, the file system provides a file abstraction to the user- level applicat
 
 The fixed capacity abstraction used between the file system and storage devices necessitates the implementation of WL
 
-![](images/6c8262d38b630ebcddf8fda0d9a62ce061c7ec990c18ae9880a330b7217d5c4f.jpg)  
+![](6c8262d38b630ebcddf8fda0d9a62ce061c7ec990c18ae9880a330b7217d5c4f.jpg)  
 Figure 3: Comparison between the traditional fixed-capacity storage system (TrSS) and capacity-variant storage system (CVSS). For TrSS (Figure 3a), the performance and reliability degrade as the device ages to maintain a fixed capacity; for CVSS (Figure 3b), the performance and reliability are maintained by trading capacity.
 
 on physical flash memory blocks. However, WL leads to an overall increase in wear on the SSD, resulting in a significantly higher error rate as all the blocks age. This, in turn, manifests into fail- slow symptoms in SSDs.
@@ -71,7 +71,7 @@ Unfortunately, ML- based learning of SSD failures requires an immense number of 
 
 The high- level design principle behind the capacity- variant system is illustrated in Figure 3. This system relaxes the fixed- capacity abstraction of the storage device and enables a better tradeoff between capacity, performance, and reliability. The traditional fixed- capacity interface, which was designed for HDDs, assumes a fail- stop behavior where all storage components either work or fail at the same time. However, this assumption is not accurate for SSDs since flash memory blocks are the basic unit of failure, and it is the responsibility of the FTL to map out failed, bad, and aged blocks [31, 50].
 
-![](images/196a00b1c0dccac308c449983d5a3ddd4ae3697184e3bcf5bd97169cf2458025.jpg)  
+![](196a00b1c0dccac308c449983d5a3ddd4ae3697184e3bcf5bd97169cf2458025.jpg)  
 Figure 4: An overview of the capacity-variant system: (1) CV-FS exports an elastic logical space based on CV-SSD's aged state; (2) CV-SSD retires error-prone blocks to maintain device performance and reliability; and (3) CV-manager provides user-level interfaces and orchestrates CV-SSD and CV-FS. The highlighted components are discussed in detail.
 
 By allowing a flexible capacity- variant interface, an SSD can gracefully reduce its exported capacity, and the storage system as a whole would reap the following three benefits.
@@ -82,7 +82,7 @@ By allowing a flexible capacity- variant interface, an SSD can gracefully reduce
 
 - Streamlined SSD design. By adopting the approach of allowing the logical capacity to drop below the initial value, SSD vendors can design smaller and more efficient error correction hardware and their SSD-internal firmware: There
 
-![](images/11e938ff4ee2b7bc82062a295f71b1645419c85ba94b1503dcf18ded57e93626.jpg)  
+![](11e938ff4ee2b7bc82062a295f71b1645419c85ba94b1503dcf18ded57e93626.jpg)  
 Figure 5: Design options for capacity variance. In Figure 5a, the FS internally maps out a range of free LBA from the user, causing address space fragmentation. In Figure 5b, the data block is physically relocated to lower LBA. This approach maintains the contiguity of the entire address space but exerts additional write pressure on the SSD. Lastly, in Figure 5c, the data block can be logically remapped to lower LBA. This approach incurs negligible system overhead by introducing a special SSD command to associate data with a new LBA.
 
 is no need to overprovision the SSD's error handling logic or to ensure that all blocks wear out evenly.
@@ -107,7 +107,7 @@ Figure 5 depicts three approaches to performing online address space reduction: 
 
 - Non-continuous address space (Figure 5a). The file system internally decouples the space exported to users from the LBA. When logical capacity should be reduced, the file system identifies an available range of free space from the end of the logical partition and then restricts the user from using it, for example, by marking that as allocated. With this approach, the adjustment of logical capacity can be efficiently achieved with minimal upfront costs, as the primary task involved is allocating the readily available free space. However, this approach increases the file system cleaning overhead and fragments the file system address
 
-![](images/31c963dd3ad0b016ba58e4795d07503fa7b7a63b93d164f322494fbcf2afa991.jpg)  
+![](31c963dd3ad0b016ba58e4795d07503fa7b7a63b93d164f322494fbcf2afa991.jpg)  
 Figure 6: Performance results for three capacity variance approaches. The address remapping approach introduces lower overhead (Figure 6a) and does not incur fragmentation after shrinking the address space (Figure 6b).
 
 space. Due to the negative effect of address fragmentation [12, 13, 19, 24], we avoid this approach despite the lowest upfront cost.
@@ -118,7 +118,7 @@ space. Due to the negative effect of address fragmentation [12, 13, 19, 24], we 
 
 We implement the three approaches above on F2FS and measure the elapsed time for reducing capacity by 1 GiB. The reported results represent an average of 60 measurements. On average, each measurement resulted in the relocation or remapping of  $0.5\mathrm{GiB}$  of data for the aged file system case and  $0.05\mathrm{GiB}$  of data for the young case. We further compare the performance under the sequential read workload with two I/O sizes (i.e.,  $16\mathrm{KiB}$  and  $4096\mathrm{KiB}$ ) before and after capacity is reduced. As depicted in Figure 6, the elapsed time required to shrink 1 GiB of logical space on an aged file system is 0.317 seconds when employing the address remapping approach. In contrast, the data relocation approach takes approximately 4.5 seconds. Notably, while the non- contiguous address space approach only takes 0.004 seconds, it exhibits significant performance degradation after the capacity reduction, for example,  $13\%$  for  $16\mathrm{KiB}$  read and  $50\%$  for  $4096\mathrm{KiB}$  read, due to increased fragmentation. We next present the design details of the proposed remapping interface and the capacity reduction process with that.
 
-![](images/cdf224488ca491a33bae53f1a49f114957bb57414e99f71f318f13800d84dd2a.jpg)  
+![](cdf224488ca491a33bae53f1a49f114957bb57414e99f71f318f13800d84dd2a.jpg)  
 Figure 7: The REMAP command workflow for capacity variance: data in the range between srcLPN and srcLPN + srcLength -1 are remapped to logical address starting from dstLPN. The third argument, dstLength, is optionally used for the file system to ensure I/O alignment.
 
 # 3.1.3 Interface Changes for Capacity Variance
@@ -145,7 +145,7 @@ The goal of a capacity- variant SSD is to keep as much flash as possible at peak
 
 Moreover, static WL [8, 9, 15] incurs additional write amplification due to data relocation within an SSD. Dynamic WL [10, 11], on the other hand, typically combines with SSD internal tasks such as garbage collection, reducing the overall cleaning efficiency as its victim selection considers both the valid ratio and wear state. A recent large- scale field study on millions of SSDs reveals that the WL techniques in modern SSDs present limited effectiveness [43] and an analysis study demonstrates that WL algorithms can even exhibit unintended behaviors by misjudging the lifetime of data in a block [25]. Such counter- productive results are avoided by forgoing WL and adopting capacity variance.
 
-![](images/7141569befc0f4d6b17b629b51c897c77b46bb6af5b3f4c3b4a0d45cf8646731.jpg)  
+![](7141569befc0f4d6b17b629b51c897c77b46bb6af5b3f4c3b4a0d45cf8646731.jpg)  
 Figure 8: The wear distribution for a 256 GiB SSD under 100 iterations of MS-DTRS workload [29]. Traditional GC and block allocation policies cause a sudden capacity loss as too many blocks are equally aged.
 
 # 3.2.2 Block Management
@@ -156,7 +156,7 @@ The fail- slow symptoms and performance degradation in SSDs are caused by aged b
 
 This block management scheme allows the capacity- variant SSD to map out underperforming and unreliable blocks earlier, effectively trading capacity for performance and reliability. In general, blocks start from a young state and transition to middle- aged and retired states. However, a block can also transition from a middle- aged state back to a young state since transient errors (i.e., retention and disturbance) are reset once the block is erased [30].
 
-![](images/f91d4e8438e1375b0ff902f53771f90130375d0c82c0ec0a865c8f39d4151d74.jpg)  
+![](f91d4e8438e1375b0ff902f53771f90130375d0c82c0ec0a865c8f39d4151d74.jpg)  
 Figure 9: CV-manager design diagram. CV-manager monitors CV-SSD's aged state (Steps 1 and 2) and provides a recommended logical capacity to CV-FS (Step 3). After capacity reduction (Steps 4-6), CV-manager notifies CV-SSD (Step 7). The  $CV_{degraded}$  mode will be triggered if the reduction fails (Step 8).
 
 # 3.2.3 Life Cycle Management
@@ -248,10 +248,10 @@ Zipfian. Figure 10 shows the read throughput under different aged states of TrSS
 
 We observe that TrSS and CVSS behave similarly at first where both CV- SSD and Tr- SSD are relatively young. However, for TrSS, the read performance degrades gradually. As Tr- SSD gets aged, the amount of error corrected during each read operation increases and thus involves more expensive read retry processes. On the other hand, CV- SSD effectively trades the capacity for performance. The performance is maintained by excluding heavily aged blocks from use. Later,  $CV_{degraded}$  is triggered to maintain a particular amount of capacity for the workloads. During this stage, blocks are used
 
-![](images/d7f9f633faac0991add383c995e6731c10498e5ebd636dbd726575460b373848.jpg)  
+![](d7f9f633faac0991add383c995e6731c10498e5ebd636dbd726575460b373848.jpg)  
 Figure 10: Read throughput under FIO Zipfian workloads. In CVSS, the performance is maintained by trading capacity. The straight vertical line represents the trigger of the  $CV_{degraded}$  mode. After  $CV_{degraded}$ , the future capacity reduction is slowed down but the performance is compromised.
 
-![](images/b74b207653bfecec4062610a5577053d8b0e64e95ee0c57ea5757f6c3c04a362.jpg)  
+![](b74b207653bfecec4062610a5577053d8b0e64e95ee0c57ea5757f6c3c04a362.jpg)  
 Figure 11: Read throughput under FIO random workloads. CVSS delivers up to  $0.6\times$  (left) and  $0.7\times$  (right) higher performance compared to TrSS, under the same amount of host writes.
 
 more evenly and the wear accumulates within the device. In this case, performance is traded for capacity in order to avoid data loss. However, even in this mode, CVSS delivers better performance compared to TrSS, thanks to the previous mapping out of most unreliable blocks. Overall, the read throughput of CVSS outperforms TrSS by up to  $0.72\times$  with the same amount of host writes.
@@ -280,10 +280,10 @@ Figure 14 compares the average KIOPS over the entire device lifetime. Overall, c
 
 Moreover, we find that traditional systems with the original discard policy show higher utilization inconsistency (i.e.,
 
-![](images/092d0274ec2f6e35e7ef5ccb9a5d7afe8f4aba8b8ad91062a885597a569410f9.jpg)  
+![](092d0274ec2f6e35e7ef5ccb9a5d7afe8f4aba8b8ad91062a885597a569410f9.jpg)  
 Figure 12: Performance results under Filebench workloads. CVSS reduces the average latency by  $8\%$  under fileserver workload (Figure 12a),  $24\%$  under netsfs workload (Figure 12b), and  $10\%$  under varmail workload (Figure 12c) compared to TrSS throughout the devices' lifetime. Before  $CV_{degraded}$  is triggered, CVSS-normal reduces the average latency by  $32\%$  under netsfs workload. Figure 12d shows the percentage of host I/Os blocked by read retry operations under varmail workload. Other workloads show a similar pattern.
 
-![](images/83e855c0a6d7d99399496d2bd5d8da73fccef70461a9618c7bf0364c3150908b.jpg)  
+![](83e855c0a6d7d99399496d2bd5d8da73fccef70461a9618c7bf0364c3150908b.jpg)  
 Figure 13: Average write throughput under FIO workloads. For TrSS, when wear leveling is triggered, the write throughput drops by  $0.6\times$  on the other hand, by forgoing WL, CV-SSD provides a more stable and better write performance.
 
 $\frac{1}{n}\sum_{Observation = 1}^{n}util_{SSD} - util_{FS})$  between FS and SSD, as shown in Figure 16. That is because of the high request rate during the experiments and F2FS only dispatches discard command when the device I/O is idle, which not only decreases SSD GC efficiency but also makes wear leveling more likely to misjudge data aliveness, limiting its effectiveness in maintaining capacity. During the experiments, the WAF of TrSS can be as high as 6.79, while only 1.12 for CVSS.
@@ -294,7 +294,7 @@ In this section, we investigate how CVSS extends device lifetime given different
 
 Figure 15 shows the TBW before the device performance drops below 0.8, 0.6, 0.4, and 0 of the initial state. In particular, 0 represents the case where no performance requirement is applied so the workload runs until the underlying SSD is unusable. In cases of lower device utilization (as shown in Figures 15a and 15c), CVSS effectively extends the device lifetime, even when high performance is required. In Figure 15a, the device fails after accommodating 10 TB host writes for TrSS and 18 TB for AutoStream, considering the performance requirement of 0.8. On the other hand, CVSS accommodates 28 TB host writes with the same performance requirement, outlasting TrSS by  $180\%$  and AutoStream by  $55\%$ . Similarly, in Figure 15c, CVSS outlasts TrSS by  $270\%$  and AutoStream by  $50\%$ .
 
-![](images/95d72909c83232f1650e96bf10e6375d970956566fa28635619585a7b4fbb46f.jpg)  
+![](95d72909c83232f1650e96bf10e6375d970956566fa28635619585a7b4fbb46f.jpg)  
 Figure 14: Performance results under Twitter traces. Capacity variance outperforms AutoStream and ttFlash and improves the throughput by  $1.42\times$  on average compared to TrSS.
 
 In the high device utilization cases (as shown in Figure 15b and 15d), CVSS outlasts TrSS by  $123\%$  and AutoStream by  $55\%$  on average with the highest performance requirement. In Figure 15b, before the device becomes unusable, CVSS accommodates 10.4 TB more in host writes compared to TrSS and 12 TB more compared to AutoStream. In our experiments, we found AutoStream achieves a longer lifetime than TrSS except for the no performance requirement case. In AutoStream, data are placed based on their characteristics, which in turn triggers more data relocation towards the end for wear leveling. Overall, with the highest performance requirement, CVSS ingests  $168\%$  more data more compared to TrSS and  $57\%$  more compared to AutoStream on average, which in turn prolongs the replacement interval and reduces the cost.
@@ -307,10 +307,10 @@ We next investigate the tradeoffs in CVSS regarding the block retirement thresho
 
 The mapping- out behavior for aged blocks in CV- SSD is controlled by a user- defined threshold. By default, blocks
 
-![](images/7f7dadbe1d39066d6ac1f5ef35cbc9f9ed76bc12827d0cb39f8c9316503c6d38.jpg)  
+![](7f7dadbe1d39066d6ac1f5ef35cbc9f9ed76bc12827d0cb39f8c9316503c6d38.jpg)  
 Figure 15: Terabytes written (TBW) with different performance requirements. Compared to TrSS and AutoStream, CVSS significantly extends the lifetime while meeting performance requirements.
 
-![](images/6f10258422df89293bf62c14b53ef80939cc4c450b327136b54e39e25b3a324e.jpg)  
+![](6f10258422df89293bf62c14b53ef80939cc4c450b327136b54e39e25b3a324e.jpg)  
 Figure 16: The average difference in FS and SSD utilization under Twitter traces. The original discard policy shows higher utilization inconsistency between FS and SSD, making data aliveness misjudged.
 
 are mapped out and turn to a retired state once their RBER exceeds  $5\%$ . In this section, we investigate how this threshold affects the performance and device lifetime.
@@ -337,13 +337,13 @@ In particular, compared to the configured case, the high  $W_{\text{invalidity}}
 
 In this section, we discuss different use cases of capacity variance and its intersection with ZNS and RAID systems.
 
-![](images/18dcf93bf7eac85536b6bb109469e21c961d05316c543383415d37688ebbcb6a.jpg)  
+![](18dcf93bf7eac85536b6bb109469e21c961d05316c543383415d37688ebbcb6a.jpg)  
 Figure 17: Sensitivity analysis on the mapping-out threshold in CVSS. CVSS with a higher reliability requirement,  $\mathrm{CVSS}(4\%)$ , achieves better performance but with a relatively shorter lifetime compared to CVSS  $(6\%)$  because blocks are retired earlier.
 
-![](images/d3a757dfbf5be73be6a4a076f50a42cf19583ece8d1c19a6c944931452e71a1f.jpg)  
+![](d3a757dfbf5be73be6a4a076f50a42cf19583ece8d1c19a6c944931452e71a1f.jpg)  
 Figure 18: The average number of read retries triggered per GiB read over the device's lifetime. The  $x$ -axis represents different ECC strengths in bits.
 
-![](images/68308326b02e39ec7fc8cbf0b356ec2dfa9ffef61a41ad1cb9f9cb1938feb94f.jpg)  
+![](68308326b02e39ec7fc8cbf0b356ec2dfa9ffef61a41ad1cb9f9cb1938feb94f.jpg)  
 Figure 19: The WAF and read retries triggered under different weights used for GC formula.
 
 Use cases of capacity variance. CVSS aims to significantly outperform fixed- capacity systems in the best case, and perform at a similar level in the worst case. The degraded mode serves the role of addressing the worst case by reserving a particular amount of capacity for the host. CVSS would be most useful for cases where IO performance is bottlenecked but has spare capacity. For instance, Haystack is the storage system specialized for new blobs (Binary Large Objects) and bottlenecks on IOPS but has spare capacity [51].
