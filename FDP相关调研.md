@@ -39,12 +39,13 @@ FDP 的接口设计基于 NVMe 命令集，扩展了日志页、特性、命令�
 ### 1. 日志页（Log Pages）
 FDP 定义了以下四个日志页，用于获取配置、统计和事件信息。这些日志页是 Endurance Group 范围的，通过 NVMe 的 `Get Log Page` 命令（Opcode：0x02）访问。
 
-|**日志页**|**日志 ID**|**描述**|
-|---|---|---|
-|FDP Configuration|0x10|提供 FDP 配置信息，包括 Reclaim Unit Handles (RUH) 数量和 Reclaim Group (RG) 信息。|
-|Reclaim Unit Handle Usage|0x11|显示当前 RUH 的使用情况，记录每个 RU 的使用状态。|
-|FDP Statistics|0x12|提供性能统计数据，如写放大因子（WAF）和写入量。|
-|FDP Events|0x13|记录 FDP 相关事件，如垃圾回收（GC）触发的事件。|
+| **日志页**                   | **日志 ID** | **描述**                                                               |
+| ------------------------- | --------- | -------------------------------------------------------------------- |
+| FDP Configuration         | 0x10      | 提供 FDP 配置信息，包括 Reclaim Unit Handles (RUH) 数量和 Reclaim Group (RG) 信息。 |
+| Reclaim Unit Handle Usage | 0x11      | 显示当前 RUH 的使用情况，记录每个 RU 的使用状态。                                        |
+| FDP Statistics            | 0x12      | 提供性能统计数据，如写放大因子（WAF）和写入量。                                            |
+| FDP Events                | 0x13      | 记录 FDP 相关事件，如垃圾回收（GC）触发的事件。                                          |
+|                           |           |                                                                      |
 
 **操作示例**：
 - 使用 NVMe-CLI 获取 FDP 配置：
