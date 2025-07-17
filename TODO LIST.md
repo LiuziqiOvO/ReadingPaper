@@ -4,3 +4,10 @@
 - [ ] ZNS Cachelib https://arxiv.org/abs/2410.11260
 - [ ] Reviving In-Storage Hardware Compression on ZNS SSDs through Host-SSD Collaboration https://ieeexplore.ieee.org/abstract/document/10946825/
 - [ ] ZipCache 一款内置透明压缩功能的 DRAM/SSD 缓存 CCF None https://dl.acm.org/doi/abs/10.1145/3695794.3695805
+- [ ] - Prefetching Using Principles of Hippocampal-Neocortical Interaction（HOTOS '23）
+- **Learning I/O Access Patterns to Improve Prefetching in SSDs**[https://blog.csdn.net/weixin_40293999/article/details/132650025?spm=1001.2014.3001.5502](https://blog.csdn.net/weixin_40293999/article/details/132650025?spm=1001.2014.3001.5502)
+- learn-store
+    - Write-Aware Timestamp Tracking: Effective and Efficient Page Replacement for Modern Hardware（[https://www.vldb.org/pvldb/vol16/p3323-vohringer.pdf）](https://www.vldb.org/pvldb/vol16/p3323-vohringer.pdf%EF%BC%89)
+    
+- **LRU-C: Parallelizing Database I/Os for Flash SSDs.**
+- **Agile-Ant: Self-managing Distributed Cache Management for Cost Optimization of Big Data Applications.**
